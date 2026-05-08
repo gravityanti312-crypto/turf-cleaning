@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PureGreen Turf Care — Arizona's #1 Artificial Turf Cleaning Service</title>
+  <meta name="description" content="Professional artificial turf cleaning, odor treatment, and restoration for Phoenix Valley homeowners. Pet safe, eco-friendly, certified technicians. Get a free quote today." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:       #2d7a3a;
+      --green-dark:  #1e5427;
+      --green-light: #4a9e5c;
+      --green-dim:   rgba(45,122,58,0.08);
+      --lime:        #7bc142;
+      --white:       #ffffff;
+      --off-white:   #f7faf7;
+      --dark:        #0f1f0f;
+      --text:        #1a2e1a;
+      --text-muted:  #6b7c6b;
+      --border:      #e0ece0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    #navbar {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      max-width: 1160px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 60px;
+      padding: 10px 10px 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      box-shadow: 0 4px 32px rgba(45,122,58,0.10);
+      transition: box-shadow 0.3s;
+    }
+    #navbar.scrolled {
+      box-shadow: 0 8px 40px rgba(45,122,58,0.18);
+    }
+    .nav-logo {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      white-space: nowrap;
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 700 !important;
+      font-size: 0.875rem !important;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      border: none;
+      background: none;
+      margin-right: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    #mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--white);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    #mobile-menu.open { opacity: 1; pointer-events: all; }
+    #mobile-menu a {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    #mobile-menu a:hover { color: var(--green); }
+    .mobile-menu-cta {
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: var(--white) !important;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-size: 1.1rem !important;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      height: 100vh;
+      min-height: 640px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=1400');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.45;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(15,31,15,0.96) 0%, rgba(15,31,15,0.72) 45%, rgba(15,31,15,0.15) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(123,193,66,0.18);
+      border: 1px solid rgba(123,193,66,0.4);
+      color: #a8e063;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 50px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .hero-h1 {
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      max-width: 640px;
+      margin-bottom: 20px;
+    }
+    .hero-h1 span { color: var(--lime); }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.78);
+      max-width: 500px;
+      line-height: 1.65;
+      margin-bottom: 36px;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 52px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: var(--white);
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 4px 20px rgba(45,122,58,0.4);
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.4);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .hero-stat-val {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--lime);
+    }
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── TRUST STRIP ── */
+    #trust {
+      background: linear-gradient(135deg, #e8f5e9, #d4edda);
+      border-top: 1px solid #c8e6c9;
+      border-bottom: 1px solid #c8e6c9;
+      padding: 22px 24px;
+    }
+    .trust-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      white-space: nowrap;
+    }
+    .trust-item::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--lime);
+      border-radius: 50%;
+    }
+    .trust-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(45,122,58,0.25);
+    }
+
+    /* ── SECTION SHARED ── */
+    .section-pad { padding: 96px 24px; }
+    .section-pad-sm { padding: 72px 24px; }
+    .container { max-width: 1160px; margin: 0 auto; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 560px;
+      margin-top: 14px;
+    }
+    .text-center { text-align: center; }
+    .text-center .section-sub { margin: 14px auto 0; }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 56px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .service-card:hover {
+      box-shadow: 0 16px 56px rgba(45,122,58,0.14);
+      transform: translateY(-4px);
+    }
+    .service-card.featured {
+      border-color: var(--green);
+      border-width: 2px;
+      box-shadow: 0 8px 32px rgba(45,122,58,0.18);
+    }
+    .service-img-wrap {
+      position: relative;
+      padding-top: 220px;
+      overflow: hidden;
+    }
+    .service-img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    .service-card:hover .service-img-wrap img { transform: scale(1.05); }
+    .service-img-avatar {
+      position: absolute;
+      bottom: -32px;
+      left: 24px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 3px solid var(--white);
+      object-fit: cover;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+    .service-body {
+      padding: 48px 24px 28px;
+    }
+    .service-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: var(--green-dim);
+      padding: 4px 10px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+    }
+    .service-tag.popular {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+    }
+    .service-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .service-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .service-list li::before {
+      content: '';
+      display: block;
+      width: 18px;
+      height: 18px;
+      background: var(--green-dim);
+      border-radius: 50%;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232d7a3a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+      background-size: 70%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .btn-green {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      width: 100%;
+      justify-content: center;
+    }
+    .btn-green:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ── WHY PUREGREEN ── */
+    #why {
+      background: #1e3a1e;
+      color: var(--white);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .why-label { color: rgba(123,193,66,0.9); }
+    .why-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 28px;
+    }
+    .why-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .why-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+    .why-check {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      margin-top: 1px;
+    }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--green-dark);
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-white:hover { background: #f0faf0; transform: translateY(-1px); }
+    .why-image-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      height: 540px;
+    }
+    .why-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .why-image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(15,31,15,0.7) 100%);
+    }
+    .why-badge {
+      position: absolute;
+      bottom: 28px;
+      left: 28px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.22);
+      color: var(--white);
+      padding: 16px 22px;
+      border-radius: 16px;
+    }
+    .why-badge-num {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--lime);
+      letter-spacing: -0.03em;
+    }
+    .why-badge-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.75);
+      font-weight: 500;
+    }
+
+    /* ── PRICING ── */
+    #pricing { background: var(--off-white); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .pricing-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .pricing-card:hover {
+      box-shadow: 0 12px 48px rgba(45,122,58,0.12);
+      transform: translateY(-4px);
+    }
+    .pricing-card.featured {
+      border-color: var(--green);
+      border-width: 2px;
+      box-shadow: 0 12px 48px rgba(45,122,58,0.2);
+    }
+    .pricing-top-bar {
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 8px;
+    }
+    .pricing-body { padding: 32px 28px; }
+    .pricing-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .pricing-tagline {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .pricing-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .pricing-amount {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--green-dark);
+      letter-spacing: -0.04em;
+    }
+    .pricing-unit {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .pricing-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+    .pricing-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .pricing-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+    .pricing-list li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 800;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── PROCESS ── */
+    #process { background: var(--white); }
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 56px;
+      position: relative;
+    }
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 44px;
+      left: calc(16.66% + 20px);
+      right: calc(16.66% + 20px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--lime));
+      z-index: 0;
+    }
+    .process-step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .process-icon {
+      width: 88px;
+      height: 88px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 24px rgba(45,122,58,0.3);
+      border: 4px solid var(--white);
+    }
+    .process-num {
+      position: absolute;
+      top: -6px;
+      right: calc(50% - 50px);
+      width: 22px;
+      height: 22px;
+      background: var(--lime);
+      border-radius: 50%;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--green-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .process-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+    .process-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── REVIEWS ── */
+    #reviews { background: var(--off-white); }
+    .reviews-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: start;
+      margin-top: 56px;
+    }
+    .reviews-panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 28px;
+      text-align: center;
+      position: sticky;
+      top: 100px;
+    }
+    .reviews-excellent {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+    .stars-row {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .star { color: #fbbc04; font-size: 1.3rem; }
+    .reviews-score {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--green-dark);
+      letter-spacing: -0.05em;
+    }
+    .reviews-count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .google-wordmark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .g-blue   { color: #4285F4; }
+    .g-red    { color: #EA4335; }
+    .g-yellow { color: #FBBC05; }
+    .g-green  { color: #34A853; }
+    .review-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: box-shadow 0.2s;
+    }
+    .review-card:hover { box-shadow: 0 8px 32px rgba(45,122,58,0.1); }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .reviewer-avatar {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .reviewer-info { flex: 1; }
+    .reviewer-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .reviewer-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .review-g {
+      width: 24px;
+      height: 24px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%234285F4' d='M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z'/%3E%3Cpath fill='%2334A853' d='M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z'/%3E%3Cpath fill='%23FBBC05' d='M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z'/%3E%3Cpath fill='%23EA4335' d='M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+    .review-stars { display: flex; gap: 2px; margin-bottom: 10px; }
+    .review-stars .star { font-size: 0.9rem; }
+    .review-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .review-read-more {
+      font-size: 0.82rem;
+      color: var(--green);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    /* ── SERVICE AREAS ── */
+    #areas {
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+    }
+    .areas-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+    .areas-sub {
+      text-align: center;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      margin-bottom: 40px;
+    }
+    .areas-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    .area-pill {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .area-pill:hover { background: rgba(255,255,255,0.25); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 56px;
+    }
+    .contact-info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--green-dim);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .contact-card-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .contact-card-val {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .contact-card-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    /* Form */
+    .contact-form {
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+    }
+    .form-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .form-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .form-input, .form-select, .form-textarea {
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(45,122,58,0.1);
+    }
+    .form-textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      font-family: 'Inter', sans-serif;
+      margin-top: 4px;
+    }
+    .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+    .form-success {
+      display: none;
+      background: #d4edda;
+      border: 1px solid #c3e6cb;
+      color: var(--green-dark);
+      padding: 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* ── FOOTER ── */
+    #footer {
+      background: var(--dark);
+      padding: 64px 24px 40px;
+    }
+    .footer-grid {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 48px;
+    }
+    .footer-brand-logo {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .footer-brand-desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .footer-col-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--lime); }
+    .footer-contact-item {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .footer-contact-item strong {
+      color: rgba(255,255,255,0.9);
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 2px;
+    }
+    .footer-divider {
+      max-width: 1160px;
+      margin: 40px auto 24px;
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+    .footer-bottom {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ── MOBILE STICKY BAR ── */
+    #sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 12px 16px;
+      z-index: 998;
+      gap: 10px;
+      box-shadow: 0 -4px 24px rgba(0,0,0,0.1);
+    }
+    .sticky-call {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex: 1;
+      padding: 13px;
+      border: 2px solid var(--green);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--green);
+      text-decoration: none;
+    }
+    .sticky-quote {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex: 1.5;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ── MODAL ── */
+    #modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    #modal-overlay.open { opacity: 1; pointer-events: all; }
+    #modal {
+      background: var(--white);
+      border-radius: 24px;
+      width: 100%;
+      max-width: 600px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+      transform: translateY(24px);
+      transition: transform 0.3s;
+    }
+    #modal-overlay.open #modal { transform: translateY(0); }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      background: var(--off-white);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: var(--border); }
+    .modal-step { display: none; }
+    .modal-step.active { display: block; }
+    .modal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green-dim);
+      color: var(--green);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 5px 12px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+    }
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .modal-sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .modal-progress {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 28px;
+    }
+    .modal-prog-dot {
+      height: 4px;
+      flex: 1;
+      background: var(--border);
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+    .modal-prog-dot.done { background: var(--green); }
+    .option-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .option-card {
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 16px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+      text-align: center;
+    }
+    @media (hover: hover) {
+      .option-card:hover {
+        background: linear-gradient(135deg, #1e5427, #2d7a3a);
+        border-color: transparent;
+        color: var(--white);
+      }
+      .option-card:hover .option-emoji { filter: none; }
+      .option-card:hover .option-label { color: var(--white); }
+      .option-card:hover .option-sub { color: rgba(255,255,255,0.7); }
+    }
+    .option-card.selected {
+      background: linear-gradient(135deg, #1e5427, #2d7a3a);
+      border-color: transparent;
+      color: var(--white);
+    }
+    .option-card.selected .option-label { color: var(--white); }
+    .option-card.selected .option-sub { color: rgba(255,255,255,0.7); }
+    .option-emoji { font-size: 1.8rem; margin-bottom: 8px; display: block; }
+    .option-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      display: block;
+    }
+    .option-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      display: block;
+    }
+    .modal-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .modal-form-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .modal-success {
+      text-align: center;
+      padding: 20px 0;
+    }
+    .modal-success-icon {
+      font-size: 3.5rem;
+      margin-bottom: 16px;
+    }
+    .modal-success h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .modal-success p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr; gap: 40px; }
+      .why-image-wrap { height: 380px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .process-grid::before { display: none; }
+      .reviews-layout { grid-template-columns: 1fr; }
+      .reviews-panel { position: static; }
+      .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+      .contact-form { padding: 28px 20px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .form-row { grid-template-columns: 1fr; }
+      #sticky-bar { display: flex; }
+      body { padding-bottom: 76px; }
+      .option-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .section-pad { padding: 64px 20px; }
+      .hero-stats { gap: 20px; }
+      .hero-btns { flex-direction: column; }
+      .footer-grid { grid-template-columns: 1fr; }
+      #modal { padding: 28px 20px; }
+      .option-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* Scroll fade-in */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <span class="nav-logo">🌿 PureGreen Turf Care</span>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#" class="nav-cta" onclick="openModal(event)">Get Free Quote</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILE MENU ── -->
+<div id="mobile-menu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#process" onclick="closeMenu()">How It Works</a>
+  <a href="#pricing" onclick="closeMenu()">Pricing</a>
+  <a href="#reviews" onclick="closeMenu()">Reviews</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="#" class="mobile-menu-cta" onclick="openModal(event);closeMenu()">📅 Get Free Quote</a>
+</div>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🌿 Arizona's #1 Turf Cleaning Service</div>
+    <h1 class="hero-h1">Artificial Turf That Looks and <span>Smells Like New.</span></h1>
+    <p class="hero-sub">Professional deep cleaning, odor elimination, and restoration for homeowners across the Phoenix Valley. Your pets and kids deserve a clean, safe lawn.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary" onclick="openModal(event)">📅 Get Free Quote</a>
+      <a href="tel:4805550200" class="btn-ghost">📞 (480) 555-0200</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-val">2,000+</span>
+        <span class="hero-stat-label">Lawns Cleaned</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-val">5.0 ★</span>
+        <span class="hero-stat-label">Google Rating</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-val">Pet Safe</span>
+        <span class="hero-stat-label">All Products</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-val">100%</span>
+        <span class="hero-stat-label">Satisfaction Guaranteed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST STRIP ── -->
+<div id="trust">
+  <div class="trust-inner">
+    <div class="trust-item">Pet &amp; Kid Safe</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">Eco-Friendly Products</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">Certified Technicians</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">Same-Day Available</div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">100% Satisfaction</div>
+  </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section id="services" class="section-pad">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="section-label">Our Services</span>
+      <h2 class="section-title">Everything Your Turf Needs</h2>
+      <p class="section-sub">From routine maintenance to full restoration — we handle it all with certified techniques and eco-safe products.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- Deep Turf Cleaning -->
+      <div class="service-card featured fade-up">
+        <div class="service-img-wrap">
+          <img src="https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=600&h=440&fit=crop" alt="Deep Turf Cleaning" loading="lazy" />
+          <img class="service-img-avatar" src="https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" alt="" loading="lazy" />
+        </div>
+        <div class="service-body">
+          <span class="service-tag popular">⭐ Most Popular</span>
+          <h3 class="service-title">Deep Turf Cleaning</h3>
+          <ul class="service-list">
+            <li>Full decontamination wash</li>
+            <li>Pet odor elimination</li>
+            <li>Bacteria &amp; algae removal</li>
+          </ul>
+          <button class="btn-green" onclick="openModal(event)">Book Now →</button>
+        </div>
+      </div>
+
+      <!-- Odor Treatment -->
+      <div class="service-card fade-up">
+        <div class="service-img-wrap">
+          <img src="https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=600&h=440&fit=crop" alt="Odor Treatment" loading="lazy" />
+          <img class="service-img-avatar" src="https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" alt="" loading="lazy" />
+        </div>
+        <div class="service-body">
+          <span class="service-tag">Odor Control</span>
+          <h3 class="service-title">Odor Treatment</h3>
+          <ul class="service-list">
+            <li>Enzyme-based odor neutralizer</li>
+            <li>Deep infill deodorizing</li>
+            <li>Long-lasting freshness</li>
+          </ul>
+          <button class="btn-green" onclick="openModal(event)">Book Now →</button>
+        </div>
+      </div>
+
+      <!-- Turf Restoration -->
+      <div class="service-card fade-up">
+        <div class="service-img-wrap">
+          <img src="https://images.pexels.com/photos/1268101/pexels-photo-1268101.jpeg?auto=compress&cs=tinysrgb&w=600&h=440&fit=crop" alt="Turf Restoration" loading="lazy" />
+          <img class="service-img-avatar" src="https://images.pexels.com/photos/1268101/pexels-photo-1268101.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" alt="" loading="lazy" />
+        </div>
+        <div class="service-body">
+          <span class="service-tag">Restoration</span>
+          <h3 class="service-title">Turf Restoration</h3>
+          <ul class="service-list">
+            <li>Fiber re-fluffing &amp; grooming</li>
+            <li>Infill replenishment</li>
+            <li>UV protectant application</li>
+          </ul>
+          <button class="btn-green" onclick="openModal(event)">Book Now →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY PUREGREEN ── -->
+<section id="why" class="section-pad">
+  <div class="container">
+    <div class="why-grid">
+      <div class="fade-up">
+        <span class="section-label why-label">Why Choose Us</span>
+        <h2 class="why-title">Why Arizona Homeowners Trust PureGreen</h2>
+        <ul class="why-list">
+          <li>
+            <span class="why-check">✓</span>
+            <span>Owner on every job — no subcontractors, ever</span>
+          </li>
+          <li>
+            <span class="why-check">✓</span>
+            <span>Pet &amp; kid safe products, certified non-toxic</span>
+          </li>
+          <li>
+            <span class="why-check">✓</span>
+            <span>Certified turf technicians with years of experience</span>
+          </li>
+          <li>
+            <span class="why-check">✓</span>
+            <span>Serving all of Metro Phoenix and the Valley</span>
+          </li>
+          <li>
+            <span class="why-check">✓</span>
+            <span>100% satisfaction guaranteed or we come back free</span>
+          </li>
+        </ul>
+        <button class="btn-white" onclick="openModal(event)">📅 Schedule My Clean</button>
+      </div>
+      <div class="why-image-wrap fade-up">
+        <img src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=700&h=900&fit=crop" alt="Professional turf technician" loading="lazy" />
+        <div class="why-image-overlay"></div>
+        <div class="why-badge">
+          <div class="why-badge-num">2,000+</div>
+          <div class="why-badge-label">Lawns Cleaned</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRICING ── -->
+<section id="pricing" class="section-pad">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="section-label">Pricing</span>
+      <h2 class="section-title">Simple, Transparent Pricing</h2>
+      <p class="section-sub">No hidden fees, no surprises. Get an exact quote for your yard size in under 60 seconds.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- Basic -->
+      <div class="pricing-card fade-up">
+        <div class="pricing-body">
+          <div class="pricing-name">Basic Clean</div>
+          <div class="pricing-tagline">Perfect for routine maintenance</div>
+          <div class="pricing-price">
+            <span class="pricing-amount">$0.12</span>
+            <span class="pricing-unit">/sq ft</span>
+          </div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-list">
+            <li>Up to 500 sq ft</li>
+            <li>Hand rake &amp; blow-off</li>
+            <li>Basic rinse &amp; deodorize</li>
+            <li>Infill leveling</li>
+          </ul>
+          <button class="btn-green" onclick="openModal(event)">Get a Quote →</button>
+        </div>
+      </div>
+
+      <!-- Deep Clean (featured) -->
+      <div class="pricing-card featured fade-up">
+        <div class="pricing-top-bar">⭐ Most Popular</div>
+        <div class="pricing-body">
+          <div class="pricing-name">Deep Clean</div>
+          <div class="pricing-tagline">Recommended for pet owners</div>
+          <div class="pricing-price">
+            <span class="pricing-amount">$0.18</span>
+            <span class="pricing-unit">/sq ft</span>
+          </div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-list">
+            <li>Up to 1,500 sq ft</li>
+            <li>Full decontamination wash</li>
+            <li>Enzyme odor treatment</li>
+            <li>Bacteria elimination</li>
+            <li>Fiber grooming</li>
+          </ul>
+          <button class="btn-green" onclick="openModal(event)">Get a Quote →</button>
+        </div>
+      </div>
+
+      <!-- Premium -->
+      <div class="pricing-card fade-up">
+        <div class="pricing-body">
+          <div class="pricing-name">Premium Restore</div>
+          <div class="pricing-tagline">Full turf revival &amp; protection</div>
+          <div class="pricing-price">
+            <span class="pricing-amount">$0.28</span>
+            <span class="pricing-unit">/sq ft</span>
+          </div>
+          <div class="pricing-divider"></div>
+          <ul class="pricing-list">
+            <li>Unlimited square footage</li>
+            <li>Everything in Deep Clean</li>
+            <li>Infill replenishment</li>
+            <li>UV protectant coating</li>
+            <li>Annual maintenance plan</li>
+          </ul>
+          <button class="btn-green" onclick="openModal(event)">Get a Quote →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section id="process" class="section-pad">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="section-label">How It Works</span>
+      <h2 class="section-title">Clean Turf in 3 Simple Steps</h2>
+      <p class="section-sub">We make it incredibly easy to get your turf looking and smelling like the day it was installed.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step fade-up">
+        <div style="position:relative; display:inline-block;">
+          <div class="process-icon">📅</div>
+          <div class="process-num">1</div>
+        </div>
+        <div class="process-title">Book Online</div>
+        <p class="process-desc">Use our 60-second quote builder to select your service, turf size, and preferred date. Zero commitment required.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div style="position:relative; display:inline-block;">
+          <div class="process-icon">🚐</div>
+          <div class="process-num">2</div>
+        </div>
+        <div class="process-title">We Come To You</div>
+        <p class="process-desc">Our certified technician arrives on time with all equipment. The owner is personally on every single job we do.</p>
+      </div>
+      <div class="process-step fade-up">
+        <div style="position:relative; display:inline-block;">
+          <div class="process-icon">🌿</div>
+          <div class="process-num">3</div>
+        </div>
+        <div class="process-title">Enjoy Clean Turf</div>
+        <p class="process-desc">Walk out to a fresh, sanitized lawn your kids and pets can enjoy immediately. 100% satisfaction guaranteed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REVIEWS ── -->
+<section id="reviews" class="section-pad" style="background:var(--off-white);">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="section-label">Customer Reviews</span>
+      <h2 class="section-title">What Our Customers Say</h2>
+      <p class="section-sub">Don't take our word for it — here's what real Phoenix Valley homeowners have to say.</p>
+    </div>
+    <div class="reviews-layout">
+      <div class="reviews-panel fade-up">
+        <div class="reviews-excellent">EXCELLENT</div>
+        <div class="stars-row">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <div class="reviews-score">5.0</div>
+        <div class="reviews-count">Based on 500+ reviews</div>
+        <div class="google-wordmark">
+          <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+        </div>
+      </div>
+      <div class="review-cards fade-up">
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">J</div>
+            <div class="reviewer-info">
+              <div class="reviewer-name">Jennifer M. — Chandler, AZ</div>
+              <div class="reviewer-date">2 weeks ago</div>
+            </div>
+            <div class="review-g"></div>
+          </div>
+          <div class="review-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="review-text">I have two large dogs and the smell in my backyard was unbearable. PureGreen came out and the dog smell is completely gone — I mean completely. I couldn't believe it. My neighbors even commented on how great the turf looks. Worth every single penny.</p>
+          <a href="#" class="review-read-more" onclick="return false;">Read more</a>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">T</div>
+            <div class="reviewer-info">
+              <div class="reviewer-name">Tyler R. — Scottsdale, AZ</div>
+              <div class="reviewer-date">1 month ago</div>
+            </div>
+            <div class="review-g"></div>
+          </div>
+          <div class="review-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="review-text">800 square feet done in under 2 hours and it looks absolutely brand new. The technician was professional, on time, and explained everything he was doing. I've already booked them for quarterly maintenance. Highly recommend to anyone in Scottsdale.</p>
+          <a href="#" class="review-read-more" onclick="return false;">Read more</a>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer-avatar">L</div>
+            <div class="reviewer-info">
+              <div class="reviewer-name">Lisa K. — Gilbert, AZ</div>
+              <div class="reviewer-date">3 weeks ago</div>
+            </div>
+            <div class="review-g"></div>
+          </div>
+          <div class="review-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="review-text">3 kids and 2 dogs — our turf needed serious help. After the PureGreen treatment it actually looks better than when it was first installed. My kids play on it every day and I have zero concerns about cleanliness. This company is the real deal.</p>
+          <a href="#" class="review-read-more" onclick="return false;">Read more</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICE AREAS ── -->
+<section id="areas" class="section-pad-sm">
+  <div class="container">
+    <h2 class="areas-title">Serving the Entire Phoenix Valley</h2>
+    <p class="areas-sub">Fast, reliable service across all Metro Phoenix communities</p>
+    <div class="areas-pills">
+      <div class="area-pill">Phoenix</div>
+      <div class="area-pill">Scottsdale</div>
+      <div class="area-pill">Chandler</div>
+      <div class="area-pill">Gilbert</div>
+      <div class="area-pill">Tempe</div>
+      <div class="area-pill">Mesa</div>
+      <div class="area-pill">Glendale</div>
+      <div class="area-pill">Peoria</div>
+      <div class="area-pill">Surprise</div>
+      <div class="area-pill">Goodyear</div>
+      <div class="area-pill">Avondale</div>
+      <div class="area-pill">Queen Creek</div>
+      <div class="area-pill">Ahwatukee</div>
+      <div class="area-pill">Paradise Valley</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact" class="section-pad">
+  <div class="container">
+    <div class="fade-up">
+      <span class="section-label">Contact Us</span>
+      <h2 class="section-title">Let's Get Your Turf Clean</h2>
+      <p class="section-sub">Reach out for a free quote or to ask any questions. We typically respond within a few hours.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info-cards fade-up">
+        <div class="contact-card">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-card-title">Phone</div>
+            <div class="contact-card-val">(480) 555-0200</div>
+            <div class="contact-card-sub">Call or text anytime</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-card-title">Email</div>
+            <div class="contact-card-val">info@puregreenturf.com</div>
+            <div class="contact-card-sub">We respond within a few hours</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-card-title">Hours</div>
+            <div class="contact-card-val">Mon – Sat: 7am – 6pm</div>
+            <div class="contact-card-sub">Sunday: By appointment</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-card-title">Service Area</div>
+            <div class="contact-card-val">Metro Phoenix, AZ</div>
+            <div class="contact-card-sub">All cities in the Valley</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form fade-up">
+        <div class="form-title">Get Your Free Quote</div>
+        <div class="form-sub">Fill out the form and we'll get back to you within a few hours with pricing for your turf.</div>
+        <form id="contact-form" onsubmit="submitContactForm(event)">
+          <input type="hidden" name="_to" value="info@puregreenturf.com" />
+          <input type="hidden" name="_subject" value="New Quote Request from PureGreen Website" />
+          <input type="hidden" name="_template" value="table" />
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First Name</label>
+              <input type="text" name="first_name" class="form-input" placeholder="Sarah" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name</label>
+              <input type="text" name="last_name" class="form-input" placeholder="Johnson" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input type="tel" name="phone" class="form-input" placeholder="(480) 555-0000" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" name="email" class="form-input" placeholder="sarah@email.com" required />
+            </div>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Service Needed</label>
+            <select name="service" class="form-select" required>
+              <option value="">Select a service…</option>
+              <option>Deep Turf Cleaning</option>
+              <option>Odor Treatment</option>
+              <option>Turf Restoration</option>
+              <option>Not Sure — Help Me Choose</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Turf Size (approx.)</label>
+            <select name="turf_size" class="form-select">
+              <option value="">Select size…</option>
+              <option>Under 500 sq ft</option>
+              <option>500 – 1,000 sq ft</option>
+              <option>1,000 – 2,000 sq ft</option>
+              <option>2,000+ sq ft</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Message (optional)</label>
+            <textarea name="message" class="form-textarea" placeholder="Any details about your turf or specific concerns…"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send My Request 🌿</button>
+          <div class="form-success" id="contact-success">
+            ✅ Thanks! We'll be in touch within a few hours with your free quote.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer id="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-logo">🌿 PureGreen Turf Care</div>
+      <p class="footer-brand-desc">Arizona's most trusted artificial turf cleaning service. We keep your lawn clean, safe, and fresh for your family and pets.</p>
+      <div style="font-size:0.8rem; color:rgba(255,255,255,0.35);">📍 Serving Metro Phoenix, AZ</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Deep Turf Cleaning</a></li>
+        <li><a href="#services">Odor Treatment</a></li>
+        <li><a href="#services">Turf Restoration</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#why">About PureGreen</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#areas">Service Areas</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact &amp; Hours</div>
+      <div class="footer-contact-item">
+        <strong>Phone</strong>
+        <a href="tel:4805550200" style="color:rgba(255,255,255,0.6); text-decoration:none;">(480) 555-0200</a>
+      </div>
+      <div class="footer-contact-item">
+        <strong>Email</strong>
+        <a href="mailto:info@puregreenturf.com" style="color:rgba(255,255,255,0.6); text-decoration:none;">info@puregreenturf.com</a>
+      </div>
+      <div class="footer-contact-item">
+        <strong>Mon – Sat</strong>
+        7:00am – 6:00pm
+      </div>
+      <div class="footer-contact-item">
+        <strong>Sunday</strong>
+        By appointment
+      </div>
+    </div>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <span>© 2025 PureGreen Turf Care. All rights reserved.</span>
+    <span>Serving the Phoenix Valley, Arizona</span>
+  </div>
+</footer>
+
+<!-- ── MOBILE STICKY BAR ── -->
+<div id="sticky-bar">
+  <a href="tel:4805550200" class="sticky-call">📞 Call Us</a>
+  <button class="sticky-quote" onclick="openModal(event)">GET FREE QUOTE</button>
+</div>
+
+<!-- ── QUOTE BUILDER MODAL ── -->
+<div id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div id="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+
+    <!-- Progress bar -->
+    <div class="modal-progress" id="modal-progress">
+      <div class="modal-prog-dot done" id="prog-1"></div>
+      <div class="modal-prog-dot" id="prog-2"></div>
+      <div class="modal-prog-dot" id="prog-3"></div>
+      <div class="modal-prog-dot" id="prog-4"></div>
+    </div>
+
+    <!-- Step 1: Property Type -->
+    <div class="modal-step active" id="modal-step-1">
+      <div class="modal-badge">🌿 Step 1 of 4</div>
+      <div class="modal-title">What type of property?</div>
+      <div class="modal-sub">Help us understand your setup so we can give you the best service.</div>
+      <div class="option-grid">
+        <div class="option-card" onclick="selectOption(this, 'property', 'House', 2)">
+          <span class="option-emoji">🏠</span>
+          <span class="option-label">House</span>
+          <span class="option-sub">Single family home</span>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 'property', 'Townhome', 2)">
+          <span class="option-emoji">🏘️</span>
+          <span class="option-label">Townhome</span>
+          <span class="option-sub">Attached or shared wall</span>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 'property', 'Condo', 2)">
+          <span class="option-emoji">🏢</span>
+          <span class="option-label">Condo</span>
+          <span class="option-sub">High-rise or complex</span>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 'property', 'Commercial', 2)">
+          <span class="option-emoji">🏗️</span>
+          <span class="option-label">Commercial</span>
+          <span class="option-sub">Business or office</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Service -->
+    <div class="modal-step" id="modal-step-2">
+      <div class="modal-badge">🌿 Step 2 of 4</div>
+      <div class="modal-title">What service do you need?</div>
+      <div class="modal-sub">Not sure? We'll make a recommendation after your free assessment.</div>
+      <div class="option-grid">
+        <div class="option-card" onclick="selectOption(this, 'service', 'Deep Cleaning', 3)">
+          <span class="option-emoji">💧</span>
+          <span class="option-label">Deep Cleaning</span>
+          <span class="option-sub">Full decontamination</span>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 'service', 'Odor Treatment', 3)">
+          <span class="option-emoji">🐾</span>
+          <span class="option-label">Odor Treatment</span>
+          <span class="option-sub">Pet odor elimination</span>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 'service', 'Full Restoration', 3)">
+          <span class="option-emoji">✨</span>
+          <span class="option-label">Full Restoration</span>
+          <span class="option-sub">Complete turf revival</span>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 'service', 'Not Sure', 3)">
+          <span class="option-emoji">🤔</span>
+          <span class="option-label">Not Sure</span>
+          <span class="option-sub">Help me choose</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Turf Size -->
+    <div class="modal-step" id="modal-step-3">
+      <div class="modal-badge">🌿 Step 3 of 4</div>
+      <div class="modal-title">How much turf do you have?</div>
+      <div class="modal-sub">An estimate is fine — we'll confirm the exact size on-site.</div>
+      <div class="option-grid">
+        <div class="option-card" onclick="selectOption(this, 'size', 'Under 500 sq ft', 4)">
+          <span class="option-emoji">🌱</span>
+          <span class="option-label">Under 500 sq ft</span>
+          <span class="option-sub">Small yard or patio</span>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 'size', '500–1000 sq ft', 4)">
+          <span class="option-emoji">🌿</span>
+          <span class="option-label">500 – 1,000 sq ft</span>
+          <span class="option-sub">Average backyard</span>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 'size', '1000–2000 sq ft', 4)">
+          <span class="option-emoji">🌳</span>
+          <span class="option-label">1,000 – 2,000 sq ft</span>
+          <span class="option-sub">Large yard</span>
+        </div>
+        <div class="option-card" onclick="selectOption(this, 'size', '2000+ sq ft', 4)">
+          <span class="option-emoji">🏞️</span>
+          <span class="option-label">2,000+ sq ft</span>
+          <span class="option-sub">Estate or commercial</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Contact Form -->
+    <div class="modal-step" id="modal-step-4">
+      <div class="modal-badge">🌿 Step 4 of 4</div>
+      <div class="modal-title">Almost there! Get your free quote.</div>
+      <div class="modal-sub">We'll send your personalized pricing within a few hours.</div>
+      <form id="modal-form" onsubmit="submitModalForm(event)">
+        <input type="hidden" name="_to" value="info@puregreenturf.com" />
+        <input type="hidden" name="_subject" value="New Quote Builder Submission — PureGreen Turf Care" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="property_type" id="modal-property" />
+        <input type="hidden" name="service_type" id="modal-service" />
+        <input type="hidden" name="turf_size" id="modal-size" />
+        <div class="form-row" style="gap:12px; margin-bottom:0;">
+          <div class="modal-form-group">
+            <label class="modal-form-label">Full Name *</label>
+            <input type="text" name="name" class="form-input" placeholder="Sarah Johnson" required />
+          </div>
+          <div class="modal-form-group">
+            <label class="modal-form-label">Phone *</label>
+            <input type="tel" name="phone" class="form-input" placeholder="(480) 555-0000" required />
+          </div>
+        </div>
+        <div class="modal-form-group">
+          <label class="modal-form-label">Email *</label>
+          <input type="email" name="email" class="form-input" placeholder="sarah@email.com" required />
+        </div>
+        <div class="modal-form-group">
+          <label class="modal-form-label">Address / Zip Code</label>
+          <input type="text" name="address" class="form-input" placeholder="123 Main St, Chandler, AZ 85224" />
+        </div>
+        <button type="submit" class="form-submit" style="margin-top:8px;">📅 Send My Free Quote Request</button>
+      </form>
+    </div>
+
+    <!-- Step 5: Success -->
+    <div class="modal-step" id="modal-step-5">
+      <div class="modal-success">
+        <div class="modal-success-icon">🌿</div>
+        <h3>We've Got Your Request!</h3>
+        <p>Thanks for reaching out. Our team will review your project and send a personalized quote to your inbox within a few hours. We look forward to making your turf look and smell like new.</p>
+        <button class="btn-green" style="margin-top:24px; width:auto; padding: 14px 32px;" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── SCRIPTS ── -->
+<script>
+  /* ── Navbar scroll ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  /* ── Mobile menu ── */
+  function toggleMenu() {
+    const ham = document.getElementById('hamburger');
+    const menu = document.getElementById('mobile-menu');
+    ham.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ── Fade-in on scroll ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  /* ── Modal ── */
+  let quoteData = {};
+  let currentStep = 1;
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    goToStep(1);
+  }
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => goToStep(1), 350);
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  function goToStep(n) {
+    currentStep = n;
+    document.querySelectorAll('.modal-step').forEach(s => s.classList.remove('active'));
+    const step = document.getElementById('modal-step-' + n);
+    if (step) step.classList.add('active');
+
+    // Update progress
+    for (let i = 1; i <= 4; i++) {
+      const dot = document.getElementById('prog-' + i);
+      if (dot) dot.classList.toggle('done', i <= n);
+    }
+
+    // Deselect all cards in the new step
+    if (step) step.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  }
+
+  function selectOption(card, field, value, nextStep) {
+    // Mark selected
+    const grid = card.closest('.option-grid');
+    grid.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    quoteData[field] = value;
+
+    // Auto-advance after brief delay
+    setTimeout(() => goToStep(nextStep), 340);
+  }
+
+  /* ── Modal form submit via FormSubmit AJAX ── */
+  async function submitModalForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('modal-form');
+    document.getElementById('modal-property').value = quoteData.property || '';
+    document.getElementById('modal-service').value = quoteData.service || '';
+    document.getElementById('modal-size').value = quoteData.size || '';
+
+    const data = new FormData(form);
+    try {
+      await fetch('https://formsubmit.co/ajax/info@puregreenturf.com', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+    } catch(err) { /* silently continue to success */ }
+
+    goToStep(5);
+    document.getElementById('modal-progress').style.display = 'none';
+  }
+
+  /* ── Contact form submit via FormSubmit AJAX ── */
+  async function submitContactForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('contact-form');
+    const data = new FormData(form);
+    try {
+      await fetch('https://formsubmit.co/ajax/info@puregreenturf.com', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+    } catch(err) { /* silently continue */ }
+    form.reset();
+    const success = document.getElementById('contact-success');
+    success.style.display = 'block';
+    setTimeout(() => success.style.display = 'none', 6000);
+  }
+
+  /* ── Re-show progress on modal re-open ── */
+  function openModal(e) {
+    if (e) e.preventDefault();
+    document.getElementById('modal-overlay').classList.add('open');
+    document.getElementById('modal-progress').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    goToStep(1);
+  }
+</script>
+</body>
+</html>
