@@ -1912,151 +1912,120 @@
 
 <!-- ── QUOTE BUILDER MODAL ── -->
 <div id="modal-overlay" onclick="handleOverlayClick(event)">
-  <div id="modal">
+  <div id="modal" style="max-width:1100px;width:95%;">
     <button class="modal-close" onclick="closeModal()">✕</button>
 
-    <!-- Progress bar -->
-    <div class="modal-progress" id="modal-progress">
-      <div class="modal-prog-dot done" id="prog-1"></div>
-      <div class="modal-prog-dot" id="prog-2"></div>
-      <div class="modal-prog-dot" id="prog-3"></div>
-      <div class="modal-prog-dot" id="prog-4"></div>
-    </div>
-
-    <!-- Step 1: Property Type -->
+    <!-- Step 1: Package Selection -->
     <div class="modal-step active" id="modal-step-1">
-      <div class="modal-badge">🌿 Step 1 of 4</div>
-      <div class="modal-title">What type of property?</div>
-      <div class="modal-sub">Help us understand your setup so we can give you the best service.</div>
-      <div class="option-grid">
-        <div class="option-card" onclick="selectOption(this, 'property', 'House', 2)">
-          <span class="option-emoji">🏠</span>
-          <span class="option-label">House</span>
-          <span class="option-sub">Single family home</span>
+      <div style="text-align:center;margin-bottom:2rem;">
+        <h2 style="font-size:1.6rem;font-weight:900;color:var(--dark);">Choose Your Package</h2>
+        <p style="color:var(--text-muted);font-size:0.95rem;margin-top:0.4rem;">Select the service level that fits your turf. Pricing is per sq ft.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+
+        <!-- Renew -->
+        <div style="background:white;border-radius:20px;padding:2rem;border:2px solid #e0ece0;display:flex;flex-direction:column;">
+          <h3 style="font-size:1.4rem;font-weight:900;color:var(--green);margin-bottom:0.2rem;">1. Renew</h3>
+          <div style="font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:1rem;">$.40 per sqft</div>
+          <hr style="border:none;border-top:2px solid var(--dark);margin-bottom:1.25rem;" />
+          <ul style="list-style:none;flex:1;display:flex;flex-direction:column;gap:0.65rem;margin-bottom:1.75rem;">
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Re-Fluff</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Debris Removal</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Edge Cleaning</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Weed Removal</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Turf Vacuum</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Power Broom</li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#94a3b8;"><span style="color:white;background:#e74c3c;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✕</span>Deodorizer</li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#94a3b8;"><span style="color:white;background:#e74c3c;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✕</span>Sanitizer</li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#94a3b8;"><span style="color:white;background:#e74c3c;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✕</span>Stain Removal</li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#94a3b8;"><span style="color:white;background:#e74c3c;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✕</span>Degrease</li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#94a3b8;"><span style="color:white;background:#e74c3c;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✕</span>Infill Renewal</li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#94a3b8;"><span style="color:white;background:#e74c3c;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✕</span>Magnet Sweep</li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#94a3b8;"><span style="color:white;background:#e74c3c;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✕</span>Power Wash</li>
+          </ul>
+          <button class="btn-green" onclick="selectPackage('Renew - $.40/sqft')">Schedule Service</button>
         </div>
-        <div class="option-card" onclick="selectOption(this, 'property', 'Townhome', 2)">
-          <span class="option-emoji">🏘️</span>
-          <span class="option-label">Townhome</span>
-          <span class="option-sub">Attached or shared wall</span>
+
+        <!-- Renew+ -->
+        <div style="background:white;border-radius:20px;padding:2rem;border:2px solid #e0ece0;display:flex;flex-direction:column;">
+          <h3 style="font-size:1.4rem;font-weight:900;color:var(--green);margin-bottom:0.2rem;">2. Renew +</h3>
+          <div style="font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:1rem;">$.60 per sqft</div>
+          <hr style="border:none;border-top:2px solid var(--dark);margin-bottom:1.25rem;" />
+          <ul style="list-style:none;flex:1;display:flex;flex-direction:column;gap:0.65rem;margin-bottom:1.75rem;">
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Re-Fluff</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Debris Removal</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Edge Cleaning</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Weed Removal</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Turf Vacuum</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Power Broom</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Deodorizer</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Sanitizer</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Stain Removal</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Degrease</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:#1a2e1a;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Infill Renewal</li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#94a3b8;"><span style="color:white;background:#e74c3c;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✕</span>Magnet Sweep</li>
+            <li style="display:flex;align-items:center;gap:8px;font-size:0.9rem;color:#94a3b8;"><span style="color:white;background:#e74c3c;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✕</span>Power Wash</li>
+          </ul>
+          <button class="btn-green" onclick="selectPackage('Renew+ - $.60/sqft')">Schedule Service</button>
         </div>
-        <div class="option-card" onclick="selectOption(this, 'property', 'Condo', 2)">
-          <span class="option-emoji">🏢</span>
-          <span class="option-label">Condo</span>
-          <span class="option-sub">High-rise or complex</span>
+
+        <!-- Premium -->
+        <div style="background:#1e3a1e;border-radius:20px;padding:2rem;border:2px solid #2d7a3a;display:flex;flex-direction:column;">
+          <h3 style="font-size:1.4rem;font-weight:900;color:#7bc142;margin-bottom:0.2rem;">3. Premium</h3>
+          <div style="font-size:1rem;font-weight:700;color:white;margin-bottom:1rem;">$.80 per sqft</div>
+          <hr style="border:none;border-top:2px solid rgba(255,255,255,0.3);margin-bottom:1.25rem;" />
+          <ul style="list-style:none;flex:1;display:flex;flex-direction:column;gap:0.65rem;margin-bottom:1.75rem;">
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Re-Fluff</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Debris Removal</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Edge Cleaning</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Weed Removal</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Turf Vacuum</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Power Broom</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Deodorizer</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Sanitizer</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Stain Removal</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Degrease</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Infill Renewal</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Magnet Sweep</li>
+            <li style="display:flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;color:white;"><span style="color:white;background:#2d7a3a;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;">✓</span>Power Wash</li>
+          </ul>
+          <button style="display:block;width:100%;padding:14px;background:var(--green);color:white;border:none;border-radius:10px;font-weight:800;font-size:0.95rem;cursor:pointer;" onclick="selectPackage('Premium - $.80/sqft')">Schedule Service</button>
         </div>
-        <div class="option-card" onclick="selectOption(this, 'property', 'Commercial', 2)">
-          <span class="option-emoji">🏗️</span>
-          <span class="option-label">Commercial</span>
-          <span class="option-sub">Business or office</span>
-        </div>
+
       </div>
     </div>
 
-    <!-- Step 2: Service -->
+    <!-- Step 2: Contact Form -->
     <div class="modal-step" id="modal-step-2">
-      <div class="modal-badge">🌿 Step 2 of 4</div>
-      <div class="modal-title">What service do you need?</div>
-      <div class="modal-sub">Not sure? We'll make a recommendation after your free assessment.</div>
-      <div class="option-grid">
-        <div class="option-card" onclick="selectOption(this, 'service', 'Deep Cleaning', 3)">
-          <span class="option-emoji">💧</span>
-          <span class="option-label">Deep Cleaning</span>
-          <span class="option-sub">Full decontamination</span>
-        </div>
-        <div class="option-card" onclick="selectOption(this, 'service', 'Odor Treatment', 3)">
-          <span class="option-emoji">🐾</span>
-          <span class="option-label">Odor Treatment</span>
-          <span class="option-sub">Pet odor elimination</span>
-        </div>
-        <div class="option-card" onclick="selectOption(this, 'service', 'Full Restoration', 3)">
-          <span class="option-emoji">✨</span>
-          <span class="option-label">Full Restoration</span>
-          <span class="option-sub">Complete turf revival</span>
-        </div>
-        <div class="option-card" onclick="selectOption(this, 'service', 'Not Sure', 3)">
-          <span class="option-emoji">🤔</span>
-          <span class="option-label">Not Sure</span>
-          <span class="option-sub">Help me choose</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 3: Turf Size -->
-    <div class="modal-step" id="modal-step-3">
-      <div class="modal-badge">🌿 Step 3 of 4</div>
-      <div class="modal-title">How much turf do you have?</div>
-      <div class="modal-sub">An estimate is fine — we'll confirm the exact size on-site.</div>
-      <div class="option-grid">
-        <div class="option-card" onclick="selectOption(this, 'size', 'Under 500 sq ft', 4)">
-          <span class="option-emoji">🌱</span>
-          <span class="option-label">Under 500 sq ft</span>
-          <span class="option-sub">Small yard or patio</span>
-        </div>
-        <div class="option-card" onclick="selectOption(this, 'size', '500–1000 sq ft', 4)">
-          <span class="option-emoji">🌿</span>
-          <span class="option-label">500 – 1,000 sq ft</span>
-          <span class="option-sub">Average backyard</span>
-        </div>
-        <div class="option-card" onclick="selectOption(this, 'size', '1000–2000 sq ft', 4)">
-          <span class="option-emoji">🌳</span>
-          <span class="option-label">1,000 – 2,000 sq ft</span>
-          <span class="option-sub">Large yard</span>
-        </div>
-        <div class="option-card" onclick="selectOption(this, 'size', '2000+ sq ft', 4)">
-          <span class="option-emoji">🏞️</span>
-          <span class="option-label">2,000+ sq ft</span>
-          <span class="option-sub">Estate or commercial</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 4: Contact Form -->
-    <div class="modal-step" id="modal-step-4">
-      <div class="modal-badge">🌿 Step 4 of 4</div>
-      <div class="modal-title">Almost there! Get your free quote.</div>
-      <div class="modal-sub">We'll send your personalized pricing within a few hours.</div>
-      <form id="modal-form" onsubmit="submitModalForm(event)">
-        <input type="hidden" name="_to" value="nostainturfcleaning@gmail.com" />
-        <input type="hidden" name="_subject" value="New Quote Builder Submission — No Stain Turf" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="property_type" id="modal-property" />
-        <input type="hidden" name="service_type" id="modal-service" />
-        <input type="hidden" name="turf_size" id="modal-size" />
-        <div class="form-row" style="gap:12px; margin-bottom:0;">
-          <div class="modal-form-group">
-            <label class="modal-form-label">Full Name *</label>
-            <input type="text" name="name" class="form-input" placeholder="Sarah Johnson" required />
+      <div style="max-width:560px;margin:0 auto;">
+        <button style="background:none;border:none;color:var(--green);font-weight:700;cursor:pointer;margin-bottom:1rem;font-size:0.9rem;" onclick="goToStep(1)">← Back to packages</button>
+        <h2 style="font-size:1.5rem;font-weight:900;color:var(--dark);margin-bottom:0.4rem;">Schedule Your Service</h2>
+        <p style="color:var(--text-muted);margin-bottom:1.75rem;font-size:0.9rem;">Selected: <strong id="selected-package-label" style="color:var(--green);"></strong></p>
+        <form id="modal-form" onsubmit="submitModalForm(event)">
+          <input type="hidden" name="_subject" value="New Service Request — No Stain Turf" />
+          <input type="hidden" name="Package" id="hidden-package" />
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+            <div><label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;">First Name</label><input type="text" name="First Name" placeholder="John" required style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-size:0.95rem;outline:none;font-family:inherit;box-sizing:border-box;" /></div>
+            <div><label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;">Last Name</label><input type="text" name="Last Name" placeholder="Smith" required style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-size:0.95rem;outline:none;font-family:inherit;box-sizing:border-box;" /></div>
           </div>
-          <div class="modal-form-group">
-            <label class="modal-form-label">Phone *</label>
-            <input type="tel" name="phone" class="form-input" placeholder="(480) 555-0000" required />
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+            <div><label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;">Phone</label><input type="tel" name="Phone" placeholder="(602) 555-0000" required style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-size:0.95rem;outline:none;font-family:inherit;box-sizing:border-box;" /></div>
+            <div><label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;">Email</label><input type="email" name="Email" placeholder="you@email.com" required style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-size:0.95rem;outline:none;font-family:inherit;box-sizing:border-box;" /></div>
           </div>
+          <div style="margin-bottom:1rem;"><label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;">Address / Zip Code</label><input type="text" name="Address" placeholder="123 Main St, Scottsdale, AZ 85251" required style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-size:0.95rem;outline:none;font-family:inherit;box-sizing:border-box;" /></div>
+          <div style="margin-bottom:1.5rem;"><label style="display:block;font-size:0.78rem;font-weight:700;color:var(--text-muted);margin-bottom:4px;text-transform:uppercase;">Approx. Turf Size (sq ft)</label><input type="text" name="Turf Size" placeholder="e.g. 800 sq ft" style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:8px;font-size:0.95rem;outline:none;font-family:inherit;box-sizing:border-box;" /></div>
+          <button type="submit" class="btn-green" style="width:100%;">Send My Request 🌿</button>
+        </form>
+        <div id="modal-success" style="display:none;text-align:center;padding:2rem;">
+          <div style="font-size:3rem;margin-bottom:0.75rem;">✅</div>
+          <h3 style="font-weight:900;color:var(--green);margin-bottom:0.5rem;">Request Sent!</h3>
+          <p style="color:var(--text-muted);">We'll be in touch within a few hours. For urgent requests call <a href="tel:6025589990" style="color:var(--green);">(602) 558-9990</a>.</p>
         </div>
-        <div class="modal-form-group">
-          <label class="modal-form-label">Email *</label>
-          <input type="email" name="email" class="form-input" placeholder="sarah@email.com" required />
-        </div>
-        <div class="modal-form-group">
-          <label class="modal-form-label">Address / Zip Code</label>
-          <input type="text" name="address" class="form-input" placeholder="123 Main St, Chandler, AZ 85224" />
-        </div>
-        <button type="submit" class="form-submit" style="margin-top:8px;">📅 Send My Free Quote Request</button>
-      </form>
-    </div>
-
-    <!-- Step 5: Success -->
-    <div class="modal-step" id="modal-step-5">
-      <div class="modal-success">
-        <div class="modal-success-icon">🌿</div>
-        <h3>We've Got Your Request!</h3>
-        <p>Thanks for reaching out. Our team will review your project and send a personalized quote to your inbox within a few hours. We look forward to making your turf look and smell like new.</p>
-        <button class="btn-green" style="margin-top:24px; width:auto; padding: 14px 32px;" onclick="closeModal()">Close</button>
       </div>
     </div>
 
   </div>
 </div>
-
 <!-- ── SCRIPTS ── -->
 <script>
   /* ── Navbar scroll ── */
@@ -2093,6 +2062,26 @@
   let quoteData = {};
   let currentStep = 1;
 
+  function selectPackage(pkg) {
+    document.getElementById('hidden-package').value = pkg;
+    document.getElementById('selected-package-label').textContent = pkg;
+    goToStep(2);
+  }
+  function goToStep(n) {
+    document.querySelectorAll('.modal-step').forEach(s => s.classList.remove('active'));
+    const step = document.getElementById('modal-step-' + n);
+    if (step) step.classList.add('active');
+  }
+  function submitModalForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('modal-form');
+    fetch('https://formsubmit.co/ajax/nostainturfcleaning@gmail.com', {
+      method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
+    }).then(() => {
+      form.style.display = 'none';
+      document.getElementById('modal-success').style.display = 'block';
+    }).catch(() => alert('Something went wrong. Please call (602) 558-9990.'));
+  }
   function openModal(e) {
     if (e) e.preventDefault();
     document.getElementById('modal-overlay').classList.add('open');
