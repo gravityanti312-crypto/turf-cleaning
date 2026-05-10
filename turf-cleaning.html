@@ -1305,6 +1305,12 @@
     }
 
     @media (max-width: 768px) {
+      #services .container > div[style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr 1fr !important; }
+    }
+    @media (max-width: 480px) {
+      #services .container > div[style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .services-grid { grid-template-columns: 1fr; }
@@ -1426,66 +1432,68 @@
       <h2 class="section-title">Everything Your Turf Needs</h2>
       <p class="section-sub">From routine maintenance to full restoration — we handle it all with certified techniques and eco-safe products.</p>
     </div>
-    <div class="services-grid">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;">
 
-      <!-- Deep Turf Cleaning -->
-      <div class="service-card featured fade-up">
-        <div class="service-img-wrap">
-          <img src="https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=600&h=440&fit=crop" alt="Deep Turf Cleaning" loading="lazy" />
-          <img class="service-img-avatar" src="https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" alt="" loading="lazy" />
-        </div>
-        <div class="service-body">
-          <span class="service-tag popular">⭐ Most Popular</span>
-          <h3 class="service-title">Deep Turf Cleaning</h3>
-          <ul class="service-list">
-            <li>Full decontamination wash</li>
-            <li>Pet odor elimination</li>
-            <li>Bacteria &amp; algae removal</li>
-          </ul>
-          <button class="btn-green" onclick="openModal(event)">Get Your Instant Quote</button>
-        </div>
+      <div style="background:white;border-radius:16px;padding:2rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:1rem;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="width:56px;height:56px;background:var(--green-dim);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;">🍃</div>
+        <h3 style="font-size:1.05rem;font-weight:800;color:var(--dark);">Debris Removal</h3>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.65;">Complete removal of leaves, dirt, twigs, and buildup that collects in your turf fibers over time.</p>
       </div>
 
-      <!-- Odor Treatment -->
-      <div class="service-card fade-up">
-        <div class="service-img-wrap">
-          <img src="https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=600&h=440&fit=crop" alt="Odor Treatment" loading="lazy" />
-          <img class="service-img-avatar" src="https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" alt="" loading="lazy" />
-        </div>
-        <div class="service-body">
-          <span class="service-tag">Odor Control</span>
-          <h3 class="service-title">Odor Treatment</h3>
-          <ul class="service-list">
-            <li>Enzyme-based odor neutralizer</li>
-            <li>Deep infill deodorizing</li>
-            <li>Long-lasting freshness</li>
-          </ul>
-          <button class="btn-green" onclick="openModal(event)">Get Your Instant Quote</button>
-        </div>
+      <div style="background:white;border-radius:16px;padding:2rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:1rem;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="width:56px;height:56px;background:var(--green-dim);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;">⚡</div>
+        <h3 style="font-size:1.05rem;font-weight:800;color:var(--dark);">Power Broom</h3>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.65;">Re-fluffs matted turf fibers and redistributes infill for a natural, upright appearance.</p>
       </div>
 
-      <!-- Turf Restoration -->
-      <div class="service-card fade-up">
-        <div class="service-img-wrap">
-          <img src="https://images.pexels.com/photos/1268101/pexels-photo-1268101.jpeg?auto=compress&cs=tinysrgb&w=600&h=440&fit=crop" alt="Turf Restoration" loading="lazy" />
-          <img class="service-img-avatar" src="https://images.pexels.com/photos/1268101/pexels-photo-1268101.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" alt="" loading="lazy" />
-        </div>
-        <div class="service-body">
-          <span class="service-tag">Restoration</span>
-          <h3 class="service-title">Turf Restoration</h3>
-          <ul class="service-list">
-            <li>Fiber re-fluffing &amp; grooming</li>
-            <li>Infill replenishment</li>
-            <li>UV protectant application</li>
-          </ul>
-          <button class="btn-green" onclick="openModal(event)">Get Your Instant Quote</button>
-        </div>
+      <div style="background:white;border-radius:16px;padding:2rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:1rem;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="width:56px;height:56px;background:var(--green-dim);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;">🐾</div>
+        <h3 style="font-size:1.05rem;font-weight:800;color:var(--dark);">Pet Odor Elimination</h3>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.65;">Enzyme-based deep treatment that neutralizes pet waste odors at the source — not just masks them.</p>
+      </div>
+
+      <div style="background:white;border-radius:16px;padding:2rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:1rem;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="width:56px;height:56px;background:var(--green-dim);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;">🧪</div>
+        <h3 style="font-size:1.05rem;font-weight:800;color:var(--dark);">Sanitization</h3>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.65;">Kid and pet safe antimicrobial treatment that kills bacteria, mold, and allergens living in your turf.</p>
+      </div>
+
+      <div style="background:white;border-radius:16px;padding:2rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:1rem;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="width:56px;height:56px;background:var(--green-dim);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;">🧹</div>
+        <h3 style="font-size:1.05rem;font-weight:800;color:var(--dark);">Stain Removal</h3>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.65;">Targeted treatment for rust, food, oil, and other stubborn stains using professional-grade solutions.</p>
+      </div>
+
+      <div style="background:white;border-radius:16px;padding:2rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:1rem;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="width:56px;height:56px;background:var(--green-dim);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;">🌱</div>
+        <h3 style="font-size:1.05rem;font-weight:800;color:var(--dark);">Infill Renewal</h3>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.65;">Replenishes displaced or low infill material to restore cushion, drainage, and a natural turf feel.</p>
+      </div>
+
+      <div style="background:white;border-radius:16px;padding:2rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:1rem;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="width:56px;height:56px;background:var(--green-dim);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;">📐</div>
+        <h3 style="font-size:1.05rem;font-weight:800;color:var(--dark);">Edge Cleaning</h3>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.65;">Detail cleaning along all borders, bender boards, and perimeter edges for a sharp, finished look.</p>
+      </div>
+
+      <div style="background:white;border-radius:16px;padding:2rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:1rem;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="width:56px;height:56px;background:var(--green-dim);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;">🌿</div>
+        <h3 style="font-size:1.05rem;font-weight:800;color:var(--dark);">Weed Removal</h3>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.65;">Manual and treatment-based removal of weeds pushing through seams, edges, and drainage holes.</p>
+      </div>
+
+      <div style="background:white;border-radius:16px;padding:2rem;border:1px solid var(--border);display:flex;flex-direction:column;gap:1rem;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="width:56px;height:56px;background:var(--green-dim);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;">💦</div>
+        <h3 style="font-size:1.05rem;font-weight:800;color:var(--dark);">Power Wash</h3>
+        <p style="font-size:0.88rem;color:var(--text-muted);line-height:1.65;">High-pressure rinse that flushes out deep contaminants, odors, and residue from the turf base.</p>
       </div>
 
     </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <button class="btn-green" onclick="openModal(event)">Get Your Instant Quote</button>
+    </div>
   </div>
 </section>
-
 <!-- ── PRICING ── -->
 <section id="pricing" class="section-pad">
   <div class="container">
