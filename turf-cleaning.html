@@ -1348,39 +1348,106 @@
       transform: translateY(0);
     }
     /* ── SERVICE DETAIL PANEL ── */
-    #svc-panel-overlay { display: none; }
-    #svc-panel {
-      position: fixed; inset: 0; z-index: 2001;
+    /* ── SERVICE MODAL (Prime Shine style) ── */
+    #svc-modal {
+      position: fixed; inset: 0; z-index: 9000;
       background: white; overflow-y: auto;
-      transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      transform: translateX(100%);
+      transition: transform 0.42s cubic-bezier(0.4,0,0.2,1);
+      visibility: hidden;
     }
-    #svc-panel.open { transform: translateY(0); }
-    .svc-panel-hero { position: relative; height: 420px; overflow: hidden; }
-    .svc-panel-hero img { width: 100%; height: 100%; object-fit: cover; }
-    .svc-panel-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,31,15,0.7) 0%, transparent 60%); }
-    .svc-panel-close {
-      position: fixed; top: 1.25rem; left: 1.25rem; z-index: 2002;
-      background: rgba(255,255,255,0.95); border: none; border-radius: 50px;
-      padding: 8px 16px; font-size: 0.85rem; font-weight: 700; cursor: pointer;
-      display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    #svc-modal.open { transform: translateX(0); visibility: visible; }
+    .svc-close {
+      position: fixed; top: 1.25rem; left: 1.25rem; z-index: 9100;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: white; border: none; cursor: pointer;
+      font-size: 1.1rem; color: var(--dark);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .svc-panel-body { padding: 2.5rem 3rem; max-width: 100%; }
-    .svc-panel-tag { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 0.4rem; }
-    .svc-panel-title { font-size: 2.2rem; font-weight: 900; color: var(--dark); margin-bottom: 0.75rem; }
-    .svc-panel-desc { font-size: 1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
-    .svc-panel-section-title { font-size: 1rem; font-weight: 800; color: var(--dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); }
-    .svc-panel-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2.5rem; }
-    .svc-panel-step { display: flex; gap: 12px; align-items: flex-start; }
-    .svc-panel-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--green-dim); border: 1px solid var(--green); color: var(--green); font-size: 0.8rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .svc-panel-step-body h4 { font-size: 0.88rem; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
-    .svc-panel-step-body p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; margin: 0; }
-    .svc-panel-membership { background: var(--off-white); border-radius: 16px; padding: 2rem; margin-top: 2rem; }
-    .svc-panel-membership h3 { font-size: 1rem; font-weight: 900; color: var(--dark); margin-bottom: 0.3rem; }
-    .svc-panel-membership p { font-size: 0.83rem; color: var(--text-muted); margin-bottom: 1rem; }
-    .svc-panel-plans { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
-    .svc-plan-row { display: flex; justify-content: space-between; align-items: center; background: white; border-radius: 10px; padding: 0.85rem 1rem; border: 1px solid var(--border); }
-    .svc-plan-name { font-weight: 700; font-size: 0.9rem; color: var(--dark); }
-    .svc-plan-savings { font-size: 0.82rem; font-weight: 800; color: var(--green); background: var(--green-dim); padding: 3px 10px; border-radius: 50px; }
+    .svc-close:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(0,0,0,0.22); }
+    .svc-hero-wrap { position: relative; height: 520px; overflow: hidden; }
+    .svc-hero-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .svc-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.2) 100%);
+    }
+    .svc-hero-content {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 4rem 5rem; max-width: 720px; color: white;
+    }
+    .svc-hero-tag {
+      font-size: 0.78rem; font-weight: 800; letter-spacing: 2.5px;
+      text-transform: uppercase; opacity: 0.75; margin-bottom: 0.6rem;
+    }
+    .svc-hero-content h1 { font-size: 2.8rem; font-weight: 900; line-height: 1.12; margin-bottom: 1rem; }
+    .svc-hero-content p { font-size: 1rem; line-height: 1.65; opacity: 0.85; margin-bottom: 1.75rem; max-width: 520px; }
+    .svc-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: white; color: var(--green-dark); font-weight: 800; font-size: 0.88rem;
+      padding: 0.9rem 2rem; border-radius: 50px; text-decoration: none;
+      letter-spacing: 1px; width: fit-content;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .svc-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.22); }
+    .svc-detail-text { padding: 3rem 0 1rem; max-width: 820px; }
+    .svc-detail-text h2 { font-size: 1.9rem; font-weight: 900; color: var(--dark); margin-bottom: 1rem; }
+    .svc-detail-text h3 { font-size: 1.15rem; font-weight: 800; color: var(--dark); margin: 2rem 0 0.6rem; }
+    .svc-detail-text p { color: var(--text-muted); line-height: 1.75; margin-bottom: 0.9rem; }
+    .svc-detail-text ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1rem; }
+    .svc-detail-text li { color: var(--text-muted); line-height: 1.65; padding-left: 1.4rem; position: relative; }
+    .svc-detail-text li::before { content: '•'; position: absolute; left: 0; color: var(--green); font-weight: 900; }
+    .svc-detail-text li strong { color: var(--dark); }
+    /* membership cards inside modal */
+    .svc-membership-section { background: linear-gradient(160deg, #f0faf2 0%, #f4f8f4 100%); padding: 5rem 0; }
+    .svc-membership-header { text-align: center; margin-bottom: 1.75rem; }
+    .svc-save-big { font-size: 3.5rem; font-weight: 900; letter-spacing: -1px; color: var(--dark); line-height: 1; }
+    .svc-save-sub { font-size: 1.1rem; font-weight: 700; color: var(--green-dark); margin-top: 0.5rem; }
+    .svc-membership-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+    .svc-mc { background: white; border-radius: 24px; padding: 2.5rem 2rem; border: 2px solid transparent; box-shadow: 0 4px 24px rgba(45,122,58,0.08); transition: transform 0.25s, box-shadow 0.25s; position: relative; }
+    .svc-mc:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(45,122,58,0.15); }
+    .svc-mc.featured { border-color: var(--green); box-shadow: 0 8px 40px rgba(45,122,58,0.18); }
+    .svc-mc.featured::before { content: 'MOST POPULAR'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--green-dark), var(--green)); color: white; font-size: 0.7rem; font-weight: 900; letter-spacing: 1.5px; padding: 4px 16px; border-radius: 50px; white-space: nowrap; }
+    .svc-mc-tier { font-size: 0.75rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 0.75rem; }
+    .svc-mc-discount { font-size: 3rem; font-weight: 900; color: var(--dark); line-height: 1; margin-bottom: 0.15rem; }
+    .svc-mc-label { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.75rem; }
+    .svc-mc-divider { border: none; border-top: 1px solid var(--border); margin-bottom: 1.5rem; }
+    .svc-mc-features { list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .svc-mc-feature { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: var(--dark); }
+    .svc-mc-check { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; }
+    .svc-mc-check.yes { background: #dcfce7; color: #16a34a; font-weight: 900; }
+    .svc-mc-check.no { background: #fee2e2; color: #dc2626; font-weight: 900; }
+    .svc-mc-btn { display: block; width: 100%; text-align: center; padding: 0.95rem; border-radius: 50px; background: linear-gradient(135deg, var(--green-dark), var(--green)); color: white; font-weight: 800; font-size: 0.9rem; letter-spacing: 0.5px; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
+    .svc-mc-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    /* reviews inside modal */
+    .svc-reviews-section { background: linear-gradient(135deg, var(--green-dark) 0%, #0a1a0a 100%); padding: 4rem 0; }
+    .svc-reviews-header { text-align: center; margin-bottom: 2rem; }
+    .svc-reviews-header .svc-tag { color: #f5c518; font-size: 0.78rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+    .svc-reviews-header h2 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; color: white; margin-bottom: 1rem; }
+    .svc-rating-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; padding: 0.5rem 1.25rem; }
+    .svc-rating-stars { color: #fbbf24; font-size: 1.1rem; letter-spacing: 2px; }
+    .svc-rating-text { color: rgba(255,255,255,0.85); font-size: 0.9rem; font-weight: 600; }
+    .svc-reviews-wrap { position: relative; }
+    .svc-reviews-grid { display: flex; overflow-x: scroll; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; gap: 1.25rem; scrollbar-width: none; padding-bottom: 0.5rem; }
+    .svc-reviews-grid::-webkit-scrollbar { display: none; }
+    .svc-reviews-grid .svc-rc-block { flex: 0 0 calc(33.333% - 0.84rem); width: calc(33.333% - 0.84rem); scroll-snap-align: start; flex-shrink: 0; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 1.75rem; box-sizing: border-box; text-decoration: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .svc-reviews-grid .svc-rc-stars { color: #fbbf24; font-size: 1rem; }
+    .svc-reviews-grid .svc-rc-text { color: rgba(255,255,255,0.88); font-style: italic; font-size: 0.9rem; line-height: 1.65; flex: 1; }
+    .svc-reviews-grid .svc-rc-name { color: white; font-weight: 700; font-size: 0.85rem; }
+    .svc-reviews-grid .svc-rc-meta { color: rgba(255,255,255,0.5); font-size: 0.75rem; }
+    .svc-reviews-grid .svc-rc-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--green), var(--green-dark)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
+    .svc-reviews-nav { display: flex; justify-content: center; gap: 0.75rem; margin-top: 1.5rem; }
+    .svc-reviews-nav button { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); color: white; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+    .svc-reviews-nav button:hover { background: rgba(255,255,255,0.2); }
+    @media (max-width: 768px) {
+      .svc-hero-wrap { height: 420px; }
+      .svc-hero-content { padding: 1.5rem 1.25rem 1.75rem; }
+      .svc-hero-content h1 { font-size: 1.6rem; }
+      .svc-close { top: auto; bottom: 1.25rem; left: auto; right: 1.25rem; }
+      .svc-reviews-grid .svc-rc-block { min-width: 82vw; }
+    }
 
     /* ── NEIGHBORS ARE SAYING carousel ── */
     .reviews-carousel-label { font-size:0.72rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:#f5c518;margin-bottom:0.75rem;text-align:center; }
@@ -2096,127 +2163,103 @@
   </div>
 </div>
 <!-- ── SERVICE DETAIL PANEL ── -->
-<div id="svc-panel-overlay" onclick="closeSvcPanel()"></div>
-<div id="svc-panel">
-  <div class="svc-panel-hero">
-    <img id="svc-panel-img" src="" alt="" />
-    <div class="svc-panel-hero-overlay"></div>
-    <button class="svc-panel-close" onclick="closeSvcPanel()">&#8592; Back</button>
+<div id="svc-modal" aria-hidden="true">
+  <button class="svc-close" onclick="closeSvcPanel()" aria-label="Close">&#10005;</button>
+
+  <div class="svc-hero-wrap">
+    <img id="svc-hero-img" src="" alt="" />
+    <div class="svc-hero-overlay"></div>
+    <div class="svc-hero-content">
+      <div class="svc-hero-tag" id="svc-hero-tag"></div>
+      <h1 id="svc-hero-title"></h1>
+      <p id="svc-hero-desc"></p>
+      <a href="#" onclick="closeSvcPanel(); openModal(event); return false;" class="svc-cta">GET YOUR INSTANT QUOTE &#8594;</a>
+    </div>
   </div>
-  <div class="svc-panel-body">
-    <div class="svc-panel-tag" id="svc-panel-tag"></div>
-    <h2 class="svc-panel-title" id="svc-panel-title"></h2>
-    <p class="svc-panel-desc" id="svc-panel-desc"></p>
-    <div class="svc-panel-section-title">How It Works</div>
-    <div class="svc-panel-steps" id="svc-panel-steps"></div>
-    <button class="btn-green" style="width:100%;" onclick="closeSvcPanel(); openModal(event);">Get Your Instant Quote</button>
 
-    <!-- Why Choose No Stain Turf -->
-    <div class="svc-panel-why">
-      <div class="svc-panel-why-title">Why Choose No Stain Turf?</div>
-      <div class="svc-panel-why-list">
-        <div class="svc-panel-why-item">
-          <div class="svc-why-check">&#10003;</div>
-          <div><strong>No Stain Professionals On Every Job</strong><span>Our trained team handles your turf personally. No random subcontractors, ever.</span></div>
-        </div>
-        <div class="svc-panel-why-item">
-          <div class="svc-why-check">&#10003;</div>
-          <div><strong>100% Satisfaction Guaranteed</strong><span>If you're not happy, we come back and make it right. Every time, no questions asked.</span></div>
-        </div>
-        <div class="svc-panel-why-item">
-          <div class="svc-why-check">&#10003;</div>
-          <div><strong>Pet &amp; Kid Safe Products</strong><span>Every product we use is EPA-approved and completely safe for your whole family.</span></div>
-        </div>
-        <div class="svc-panel-why-item">
-          <div class="svc-why-check">&#10003;</div>
-          <div><strong>Same-Week Availability</strong><span>Most jobs scheduled within 3–5 business days. Emergency cleanings available on request.</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SAVE BIG pricing cards -->
-    <div class="svc-save-section">
-      <div class="svc-save-label">Maintenance Plans</div>
-      <div class="svc-save-title">SAVE BIG</div>
-      <div class="svc-save-subtitle">With Our No Stain Turf Plans</div>
-      <div class="svc-save-cards">
-        <div class="svc-save-card">
-          <div class="svc-save-card-name">Bi-Monthly</div>
-          <div class="svc-save-card-price">$75 OFF</div>
-          <div class="svc-save-card-per">Per Cleaning</div>
-          <div class="svc-save-divider"></div>
-          <ul class="svc-save-features">
-            <li><div class="svc-feat-check">&#10003;</div> Priority scheduling</li>
-            <li><div class="svc-feat-check">&#10003;</div> FREE deodorizer top-up</li>
-            <li><div class="svc-feat-check">&#10003;</div> FREE fiber grooming</li>
-            <li><div class="svc-feat-check">&#10003;</div> FREE enzyme treatment</li>
-          </ul>
-          <button class="svc-save-btn" onclick="closeSvcPanel(); openModal(event);">GET YOUR INSTANT QUOTE</button>
-        </div>
-        <div class="svc-save-card featured">
-          <div class="svc-save-card-badge">MOST POPULAR</div>
-          <div class="svc-save-card-name">Monthly</div>
-          <div class="svc-save-card-price">$50 OFF</div>
-          <div class="svc-save-card-per">Per Cleaning</div>
-          <div class="svc-save-divider"></div>
-          <ul class="svc-save-features">
-            <li><div class="svc-feat-check">&#10003;</div> Priority scheduling</li>
-            <li><div class="svc-feat-check">&#10003;</div> FREE deodorizer top-up</li>
-            <li><div class="svc-feat-check">&#10003;</div> FREE fiber grooming</li>
-            <li><div class="svc-feat-check">&#10003;</div> FREE enzyme treatment</li>
-          </ul>
-          <button class="svc-save-btn" onclick="closeSvcPanel(); openModal(event);">GET YOUR INSTANT QUOTE</button>
-        </div>
-        <div class="svc-save-card">
-          <div class="svc-save-card-name">Quarterly</div>
-          <div class="svc-save-card-price">$30 OFF</div>
-          <div class="svc-save-card-per">Per Cleaning</div>
-          <div class="svc-save-divider"></div>
-          <ul class="svc-save-features">
-            <li><div class="svc-feat-check">&#10003;</div> Priority scheduling</li>
-            <li><div class="svc-feat-x">&#10007;</div> FREE deodorizer top-up</li>
-            <li><div class="svc-feat-x">&#10007;</div> FREE fiber grooming</li>
-            <li><div class="svc-feat-x">&#10007;</div> FREE enzyme treatment</li>
-          </ul>
-          <button class="svc-save-btn" onclick="closeSvcPanel(); openModal(event);">GET YOUR INSTANT QUOTE</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mini Reviews -->
-    <div class="svc-mini-reviews">
-      <div class="svc-mini-reviews-title">What Customers Are Saying</div>
-      <div class="svc-mini-reviews-sub">Real neighbors, real results.</div>
-      <div class="svc-mini-reviews-grid">
-        <div class="svc-mini-card">
-          <div class="svc-mini-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="svc-mini-text">"The dog smell is completely gone. My neighbors even commented on how great the turf looks. Worth every penny."</p>
-          <div class="svc-mini-author">
-            <div class="svc-mini-avatar">J</div>
-            <div><div class="svc-mini-name">Jennifer M.</div><div class="svc-mini-loc">Chandler · Google Review</div></div>
-          </div>
-        </div>
-        <div class="svc-mini-card">
-          <div class="svc-mini-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="svc-mini-text">"800 sq ft done in 2 hours — looks absolutely brand new. Already booked quarterly maintenance."</p>
-          <div class="svc-mini-author">
-            <div class="svc-mini-avatar">T</div>
-            <div><div class="svc-mini-name">Tyler R.</div><div class="svc-mini-loc">Scottsdale · Google Review</div></div>
-          </div>
-        </div>
-        <div class="svc-mini-card">
-          <div class="svc-mini-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <p class="svc-mini-text">"3 kids, 2 dogs — our turf looks better than when first installed. This company is the real deal."</p>
-          <div class="svc-mini-author">
-            <div class="svc-mini-avatar">L</div>
-            <div><div class="svc-mini-name">Lisa K.</div><div class="svc-mini-loc">Gilbert · Google Review</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class="container">
+    <div class="svc-detail-text" id="svc-detail-content"></div>
   </div>
+
+  <section class="svc-membership-section">
+    <div class="container">
+      <div class="svc-membership-header">
+        <div class="svc-save-big">SAVE BIG</div>
+        <div class="svc-save-sub">With Our No Stain Turf Plans</div>
+      </div>
+      <div class="svc-membership-grid">
+        <div class="svc-mc">
+          <div class="svc-mc-tier">Bi-Monthly</div>
+          <div class="svc-mc-discount">$75 OFF</div>
+          <div class="svc-mc-label">Per Cleaning</div>
+          <hr class="svc-mc-divider" />
+          <ul class="svc-mc-features">
+            <li class="svc-mc-feature"><span class="svc-mc-check yes">&#10003;</span>Priority scheduling</li>
+            <li class="svc-mc-feature"><span class="svc-mc-check yes">&#10003;</span>FREE deodorizer top-up</li>
+            <li class="svc-mc-feature"><span class="svc-mc-check yes">&#10003;</span>FREE fiber grooming</li>
+            <li class="svc-mc-feature"><span class="svc-mc-check yes">&#10003;</span>FREE enzyme treatment</li>
+          </ul>
+          <button class="svc-mc-btn" onclick="closeSvcPanel(); openModal(event);">GET YOUR INSTANT QUOTE</button>
+        </div>
+        <div class="svc-mc featured">
+          <div class="svc-mc-tier">Monthly</div>
+          <div class="svc-mc-discount">$50 OFF</div>
+          <div class="svc-mc-label">Per Cleaning</div>
+          <hr class="svc-mc-divider" />
+          <ul class="svc-mc-features">
+            <li class="svc-mc-feature"><span class="svc-mc-check yes">&#10003;</span>Priority scheduling</li>
+            <li class="svc-mc-feature"><span class="svc-mc-check yes">&#10003;</span>FREE deodorizer top-up</li>
+            <li class="svc-mc-feature"><span class="svc-mc-check yes">&#10003;</span>FREE fiber grooming</li>
+            <li class="svc-mc-feature"><span class="svc-mc-check yes">&#10003;</span>FREE enzyme treatment</li>
+          </ul>
+          <button class="svc-mc-btn" onclick="closeSvcPanel(); openModal(event);">GET YOUR INSTANT QUOTE</button>
+        </div>
+        <div class="svc-mc">
+          <div class="svc-mc-tier">Quarterly</div>
+          <div class="svc-mc-discount">$30 OFF</div>
+          <div class="svc-mc-label">Per Cleaning</div>
+          <hr class="svc-mc-divider" />
+          <ul class="svc-mc-features">
+            <li class="svc-mc-feature"><span class="svc-mc-check yes">&#10003;</span>Priority scheduling</li>
+            <li class="svc-mc-feature"><span class="svc-mc-check no">&#10007;</span>FREE deodorizer top-up</li>
+            <li class="svc-mc-feature"><span class="svc-mc-check no">&#10007;</span>FREE fiber grooming</li>
+            <li class="svc-mc-feature"><span class="svc-mc-check no">&#10007;</span>FREE enzyme treatment</li>
+          </ul>
+          <button class="svc-mc-btn" onclick="closeSvcPanel(); openModal(event);">GET YOUR INSTANT QUOTE</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc-reviews-section">
+    <div class="container">
+      <div class="svc-reviews-header">
+        <span class="svc-tag">Testimonials</span>
+        <h2>NEIGHBORS ARE SAYING</h2>
+        <div class="svc-rating-badge">
+          <span class="svc-rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="svc-rating-text">5.0 Stars on Google</span>
+        </div>
+      </div>
+      <div class="svc-reviews-wrap">
+        <div class="svc-reviews-grid" id="svcReviewsGrid">
+          <div class="svc-rc-block"><div class="svc-rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="svc-rc-text">"I have two large dogs and the smell in my backyard was unbearable. No Stain Turf came out and the dog smell is completely gone. Worth every single penny."</p><div style="display:flex;align-items:center;gap:10px;"><div class="svc-rc-avatar">J</div><div><div class="svc-rc-name">Jennifer M.</div><div class="svc-rc-meta">Chandler &middot; Google Review</div></div></div></div>
+          <div class="svc-rc-block"><div class="svc-rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="svc-rc-text">"800 square feet done in under 2 hours and it looks absolutely brand new. The technician was professional, on time, and explained everything. Already booked quarterly maintenance."</p><div style="display:flex;align-items:center;gap:10px;"><div class="svc-rc-avatar">T</div><div><div class="svc-rc-name">Tyler R.</div><div class="svc-rc-meta">Scottsdale &middot; Google Review</div></div></div></div>
+          <div class="svc-rc-block"><div class="svc-rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="svc-rc-text">"3 kids and 2 dogs — our turf looks better than when it was first installed. This company is the real deal."</p><div style="display:flex;align-items:center;gap:10px;"><div class="svc-rc-avatar">L</div><div><div class="svc-rc-name">Lisa K.</div><div class="svc-rc-meta">Gilbert &middot; Google Review</div></div></div></div>
+          <div class="svc-rc-block"><div class="svc-rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="svc-rc-text">"My turf looks incredible. They sanitized everything with pet-safe products. I feel totally comfortable letting my kids play on it now."</p><div style="display:flex;align-items:center;gap:10px;"><div class="svc-rc-avatar">M</div><div><div class="svc-rc-name">Maria S.</div><div class="svc-rc-meta">Tempe &middot; Google Review</div></div></div></div>
+          <div class="svc-rc-block"><div class="svc-rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="svc-rc-text">"Fast, professional, results speak for themselves. They removed stains from years of use. No Stain Turf is by far the best."</p><div style="display:flex;align-items:center;gap:10px;"><div class="svc-rc-avatar">D</div><div><div class="svc-rc-name">David K.</div><div class="svc-rc-meta">Mesa &middot; Google Review</div></div></div></div>
+          <div class="svc-rc-block"><div class="svc-rc-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="svc-rc-text">"Outstanding work. They completely transformed our turf. The infill renewal made it feel like new. We're on the monthly plan and couldn't be happier."</p><div style="display:flex;align-items:center;gap:10px;"><div class="svc-rc-avatar">A</div><div><div class="svc-rc-name">Ashley R.</div><div class="svc-rc-meta">Phoenix &middot; Google Review</div></div></div></div>
+        </div>
+        <div class="svc-reviews-nav">
+          <button onclick="scrollSvcReviews(-1)">&#8592;</button>
+          <button onclick="scrollSvcReviews(1)">&#8594;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
+<!-- ── SCRIPTS ── --></div>
 <!-- ── SCRIPTS ── -->
 <script>
   /* ── Navbar scroll ── */
@@ -2358,47 +2401,53 @@
     setTimeout(() => success.style.display = 'none', 6000);
   }
 
-  /* ── Service Detail Panel ── */
+  /* ── Service Modal (Prime Shine style) ── */
   var svcDetails = {
-    refluff: { tag: 'Fiber Care', title: 'Re-Fluff', img: 'https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Over time turf fibers get matted down from foot traffic, pets, and weather. Our re-fluff service uses a specialized power broom to lift every fiber back to its natural upright position — making your turf look brand new.', steps: [{t:'Assessment',b:'We walk the turf to identify high-traffic flat areas and fiber direction.'},{t:'Power Broom Pass',b:'Our machine broom agitates fibers in multiple directions to lift and restore them.'},{t:'Infill Check',b:'We inspect infill levels and redistribute as needed for even support.'},{t:'Final Inspection',b:'We walk the entire area to confirm consistent, upright fiber coverage.'}] },
-    debris: { tag: 'Cleaning', title: 'Debris Removal', img: 'https://images.pexels.com/photos/1453499/pexels-photo-1453499.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Leaves, dirt, twigs, and organic matter that settle into turf can trap moisture and cause bacteria growth. We remove all surface and embedded debris completely.', steps: [{t:'Blow-Off',b:'We use professional blowers to clear loose surface debris from the entire area.'},{t:'Rake & Collect',b:'Stubborn debris is hand-raked and collected from edges and tight spaces.'},{t:'Vacuum Pass',b:'An industrial turf vacuum pulls out fine particles embedded in the infill.'},{t:'Final Check',b:'We inspect every section to confirm the turf is fully clear.'}] },
-    edge: { tag: 'Detail Work', title: 'Edge Cleaning', img: 'https://images.pexels.com/photos/1599788/pexels-photo-1599788.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'The edges of your turf collect the most debris, weed growth, and buildup. Our edge cleaning service gives your turf a sharp, finished look along every border and bender board.', steps: [{t:'Border Inspection',b:'We identify all edges, seams, and bender boards around the perimeter.'},{t:'Detail Cleaning',b:'Using hand tools we remove dirt, debris, and buildup along every edge.'},{t:'Weed Check',b:'We remove any weeds or growth visible along borders.'},{t:'Final Trim',b:'Edges are brushed and tidied for a clean, defined perimeter.'}] },
-    weed: { tag: 'Maintenance', title: 'Weed Removal', img: 'https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Weeds push through turf seams, drainage holes, and edges over time. We remove them manually and treat the areas to prevent regrowth.', steps: [{t:'Full Inspection',b:'We walk the entire turf surface identifying all weed penetration points.'},{t:'Manual Removal',b:'Each weed is pulled by hand from the root to prevent regrowth.'},{t:'Seam Treatment',b:'We treat problem seams and drainage holes with a turf-safe solution.'},{t:'Prevention Check',b:'We note recurring areas and recommend maintenance intervals to stay ahead.'}] },
-    vacuum: { tag: 'Deep Clean', title: 'Turf Vacuum', img: 'https://images.pexels.com/photos/3768914/pexels-photo-3768914.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Surface cleaning only does so much. Our industrial turf vacuum reaches deep into the infill layer to pull out pet hair, fine dust, pollen, and microscopic particles you cannot see.', steps: [{t:'Setup',b:'We set up the industrial vacuum system and do a test pass on a small area.'},{t:'Systematic Pass',b:'We vacuum in overlapping passes across the entire turf surface.'},{t:'Edge Vacuum',b:'Edges and corners get a dedicated pass where fine debris accumulates most.'},{t:'Infill Check',b:'After vacuuming we check infill levels and top up if needed.'}] },
-    broom: { tag: 'Fiber Care', title: 'Power Broom', img: 'https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Our power broom is one of the most effective tools for maintaining healthy turf. It lifts fibers, redistributes infill, and removes light debris in a single pass.', steps: [{t:'Direction Pass',b:'We run the broom against the natural fiber direction to lift and open fibers.'},{t:'Infill Distribution',b:'The rotating brush evenly redistributes infill to low spots and edges.'},{t:'Cross Pass',b:'A second pass at 90 degrees ensures complete and even coverage.'},{t:'Finish',b:'Final inspection confirms fibers are standing upright and infill is level.'}] },
-    deodorizer: { tag: 'Odor Control', title: 'Deodorizer', img: 'https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Pet waste, bacteria, and organic matter create odors that sink deep into your turf infill. Our enzyme-based deodorizer breaks down odor molecules at the source for lasting freshness.', steps: [{t:'Pre-Rinse',b:'We lightly rinse the surface to open turf fibers and prepare for treatment.'},{t:'Enzyme Application',b:'Our enzyme solution is applied evenly across the entire turf surface.'},{t:'Dwell Time',b:'The enzymes are given time to penetrate the infill and break down odor sources.'},{t:'Final Rinse',b:'A light rinse activates the solution and carries odor residue away.'}] },
-    sanitizer: { tag: 'Health & Safety', title: 'Sanitizer', img: 'https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Bacteria, mold, and allergens live in turf that sees regular pet and foot traffic. Our antimicrobial sanitization is safe for kids and pets and kills what you cannot see.', steps: [{t:'Pre-Clean',b:'Surface debris is removed first so the sanitizer can reach the turf fibers.'},{t:'Application',b:'Our pet-safe antimicrobial is applied in an even mist across the full area.'},{t:'Penetration',b:'The solution penetrates fiber and infill to kill bacteria and mold at the root.'},{t:'Air Dry',b:'Turf is allowed to fully dry before foot traffic resumes — usually 30-60 minutes.'}] },
-    stain: { tag: 'Stain Treatment', title: 'Stain Removal', img: 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Rust, food, oil, paint, and other stains can permanently discolor turf if left untreated. Our targeted stain treatment uses professional-grade products safe for synthetic fibers.', steps: [{t:'Stain Identification',b:'We identify each stain and determine the right treatment approach.'},{t:'Pre-Treatment',b:'A targeted solution is applied directly to each stain and allowed to penetrate.'},{t:'Agitation',b:'Light scrubbing lifts the stain from the fiber without damaging the turf.'},{t:'Rinse & Check',b:'We rinse and inspect to confirm removal before finishing.'}] },
-    degrease: { tag: 'Deep Clean', title: 'Degrease', img: 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Oil, sunscreen, grease, and organic buildup coat turf fibers over time, attracting dirt and causing matting. Our degreasing treatment restores a clean, fresh fiber surface.', steps: [{t:'Surface Assessment',b:'We identify greasy or buildup-heavy zones across the turf.'},{t:'Degreaser Application',b:'Turf-safe degreaser is applied and worked into affected fiber areas.'},{t:'Dwell & Agitate',b:'The solution is given time to break down oils before gentle brushing.'},{t:'Full Rinse',b:'High-volume rinse removes all degreaser and lifted residue.'}] },
-    infill: { tag: 'Restoration', title: 'Infill Renewal', img: 'https://images.pexels.com/photos/1268101/pexels-photo-1268101.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Infill material shifts and compacts over time from foot traffic and weather. We replenish displaced material to restore cushion, drainage, and a natural turf feel.', steps: [{t:'Level Assessment',b:'We measure infill depth across the turf to identify low or depleted areas.'},{t:'Material Selection',b:'We match infill type (crumb rubber, silica sand, organic) to your existing turf.'},{t:'Even Application',b:'New infill is spread evenly across the turf surface in calculated amounts.'},{t:'Power Broom In',b:'A power broom works the infill down into the fiber base for proper distribution.'}] },
-    magnet: { tag: 'Safety Sweep', title: 'Magnet Sweep', img: 'https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Nails, staples, wire, and metal debris are hidden hazards in your turf that can injure kids, pets, or damage equipment. Our magnet sweep finds and removes every piece.', steps: [{t:'Pre-Sweep Walk',b:'We do a visual inspection to note any visible metal objects first.'},{t:'Full Magnet Pass',b:'A powerful magnet bar is swept in systematic passes across the entire area.'},{t:'Edge Sweep',b:'Edges and corners receive dedicated passes where debris accumulates.'},{t:'Collection & Confirm',b:'All collected metal debris is shown to you and disposed of safely.'}] },
-    powerwash: { tag: 'Deep Clean', title: 'Power Wash', img: 'https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'A thorough power wash flushes out deep contamination, rinses away treatment residues, and leaves your turf clean from fiber tip to base. Ideal as the final step in any full-service clean.', steps: [{t:'Setup & Pressure Check',b:'We calibrate pressure to turf-safe levels — enough to clean without displacing infill.'},{t:'Systematic Rinse',b:'We work in rows across the turf, flushing contaminants toward drainage points.'},{t:'Edge Flush',b:'Borders and drainage areas are flushed to remove accumulated buildup.'},{t:'Final Inspection',b:'We check drainage is flowing freely and the turf surface is clean throughout.'}] }
+    refluff: { tag: 'Fiber Care', title: 'Re-Fluff & Fiber Restoration', img: 'https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'Over time turf fibers get matted down from foot traffic, pets, and weather. Our re-fluff service lifts every fiber back to its natural upright position.', h2: 'Re-Fluff Service at No Stain Turf', body: '<p>Flat, matted fibers are one of the most common signs of turf wear. No Stain Turf uses a specialized power broom to agitate fibers in multiple directions, restoring the natural upright position that makes your turf look and feel brand new.</p><h3>What's Included</h3><ul><li><strong>Traffic Assessment:</strong> We walk the turf to identify flat zones and fiber direction.</li><li><strong>Power Broom Pass:</strong> Multi-directional machine broom lifts fibers back up.</li><li><strong>Infill Redistribution:</strong> We level and redistribute infill for even support.</li><li><strong>Final Walkthrough:</strong> Full inspection for consistent, upright fiber coverage.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' },
+    debris: { tag: 'Cleaning', title: 'Debris Removal', img: 'https://images.pexels.com/photos/1453499/pexels-photo-1453499.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'Leaves, dirt, twigs, and organic matter settle into turf and trap moisture. We remove all surface and embedded debris completely.', h2: 'Debris Removal at No Stain Turf', body: '<p>Organic debris left in turf fibers creates the perfect environment for bacteria, mold, and odor. No Stain Turf performs a thorough multi-step debris removal that clears your turf from the surface all the way down into the infill.</p><h3>What's Included</h3><ul><li><strong>Blow-Off:</strong> Professional blowers clear all loose surface debris.</li><li><strong>Rake &amp; Collect:</strong> Stubborn debris hand-raked from edges and tight spaces.</li><li><strong>Vacuum Pass:</strong> Industrial turf vacuum pulls fine particles from the infill.</li><li><strong>Final Inspection:</strong> Full walk confirms every section is clear.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' },
+    edge: { tag: 'Detail Work', title: 'Edge Cleaning', img: 'https://images.pexels.com/photos/1599788/pexels-photo-1599788.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'The edges of your turf collect the most debris, weed growth, and buildup. We give every border a sharp, finished look.', h2: 'Edge Cleaning at No Stain Turf', body: '<p>Turf edges are where dirt, debris, and weeds accumulate fastest. Our edge cleaning service restores that crisp, well-defined perimeter that makes your entire turf installation look professionally maintained.</p><h3>What's Included</h3><ul><li><strong>Border Inspection:</strong> We identify all edges, seams, and bender boards.</li><li><strong>Detail Cleaning:</strong> Hand tools remove buildup along every edge.</li><li><strong>Weed Check:</strong> Any growth along borders is removed on the spot.</li><li><strong>Final Trim:</strong> Edges brushed and tidied for a clean, defined perimeter.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' },
+    weed: { tag: 'Maintenance', title: 'Weed Removal', img: 'https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'Weeds push through turf seams, drainage holes, and edges over time. We remove them manually and treat to prevent regrowth.', h2: 'Weed Removal at No Stain Turf', body: '<p>Weeds don't just look bad — they compromise the integrity of your turf seams and drainage system. No Stain Turf manually removes every weed at the root and treats problem areas to slow regrowth.</p><h3>What's Included</h3><ul><li><strong>Full Inspection:</strong> We walk the entire turf identifying all weed penetration points.</li><li><strong>Manual Removal:</strong> Each weed pulled by hand from the root.</li><li><strong>Seam Treatment:</strong> Problem seams and drainage holes treated with a turf-safe solution.</li><li><strong>Prevention Check:</strong> We note recurring areas and recommend maintenance intervals.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' },
+    vacuum: { tag: 'Deep Clean', title: 'Turf Vacuum', img: 'https://images.pexels.com/photos/3768914/pexels-photo-3768914.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'Our industrial turf vacuum reaches deep into the infill layer to pull out pet hair, fine dust, pollen, and microscopic particles.', h2: 'Turf Vacuuming at No Stain Turf', body: '<p>Surface cleaning only does so much. The No Stain Turf industrial vacuum system pulls contaminants from deep within your infill layer — the zone where pet hair, pollen, and fine particles hide and cause odors.</p><h3>What's Included</h3><ul><li><strong>System Setup:</strong> Industrial vacuum configured and test-run before starting.</li><li><strong>Systematic Pass:</strong> Overlapping vacuum passes across the full turf surface.</li><li><strong>Edge Vacuum:</strong> Dedicated pass along edges and corners where debris collects.</li><li><strong>Infill Check:</strong> We verify infill levels after vacuuming and top up if needed.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' },
+    broom: { tag: 'Fiber Care', title: 'Power Broom', img: 'https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'Our power broom lifts fibers, redistributes infill, and removes light debris in a single pass — essential for healthy turf.', h2: 'Power Brooming at No Stain Turf', body: '<p>The power broom is one of the most effective maintenance tools for artificial turf. It simultaneously lifts matted fibers, redistributes displaced infill, and clears loose debris in one efficient treatment.</p><h3>What's Included</h3><ul><li><strong>Direction Pass:</strong> Broom run against natural fiber direction to lift and open fibers.</li><li><strong>Infill Distribution:</strong> Rotating brush evenly redistributes infill to low spots.</li><li><strong>Cross Pass:</strong> Second pass at 90 degrees for complete, even coverage.</li><li><strong>Final Inspection:</strong> Confirmation that fibers are upright and infill is level.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' },
+    deodorizer: { tag: 'Odor Control', title: 'Pet Odor Elimination', img: 'https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'Our enzyme-based deodorizer breaks down odor molecules at the source deep in your turf infill for lasting freshness.', h2: 'Pet Odor Elimination at No Stain Turf', body: '<p>Pet waste, bacteria, and organic matter create odors that sink deep into your turf infill and can't be removed by rinsing alone. Our enzyme treatment breaks down the odor molecules at the molecular level for results that actually last.</p><h3>What's Included</h3><ul><li><strong>Pre-Rinse:</strong> Light rinse opens turf fibers and prepares for treatment.</li><li><strong>Enzyme Application:</strong> Solution applied evenly across the full turf surface.</li><li><strong>Dwell Time:</strong> Enzymes penetrate infill and break down odor at the source.</li><li><strong>Final Rinse:</strong> Activates the solution and carries odor residue away.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' },
+    sanitizer: { tag: 'Health & Safety', title: 'Sanitization', img: 'https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'Bacteria, mold, and allergens live in turf that sees regular pet and foot traffic. Our antimicrobial sanitization kills what you cannot see.', h2: 'Turf Sanitization at No Stain Turf', body: '<p>Artificial turf that sees daily use from kids and pets harbors bacteria, mold spores, and allergens in its fibers and infill. No Stain Turf's antimicrobial sanitization treatment eliminates these health hazards safely and completely.</p><h3>What's Included</h3><ul><li><strong>Pre-Clean:</strong> Surface debris removed so sanitizer can reach turf fibers directly.</li><li><strong>Application:</strong> Pet-safe antimicrobial misted evenly across the full area.</li><li><strong>Penetration:</strong> Solution penetrates fiber and infill to kill bacteria at the root.</li><li><strong>Air Dry:</strong> Turf allowed to fully dry before foot traffic — typically 30–60 minutes.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' },
+    stain: { tag: 'Stain Treatment', title: 'Stain Removal', img: 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'Rust, food, oil, paint, and other stains can permanently discolor turf if untreated. We use professional-grade products safe for synthetic fibers.', h2: 'Stain Removal at No Stain Turf', body: '<p>Stains left untreated on artificial turf can set permanently into the fibers. No Stain Turf identifies and targets each stain with the right professional-grade treatment — restoring your turf to a clean, uniform appearance.</p><h3>What's Included</h3><ul><li><strong>Stain Identification:</strong> We assess each stain and determine the right approach.</li><li><strong>Pre-Treatment:</strong> Targeted solution applied directly to each stain.</li><li><strong>Agitation:</strong> Light scrubbing lifts the stain without damaging fiber.</li><li><strong>Rinse &amp; Check:</strong> Rinse and inspect to confirm removal before finishing.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' },
+    degrease: { tag: 'Deep Clean', title: 'Degrease', img: 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'Oil, sunscreen, grease, and organic buildup coat turf fibers over time. Our degreasing treatment restores a clean, fresh fiber surface.', h2: 'Turf Degreasing at No Stain Turf', body: '<p>Oils from sunscreen, food, and organic matter coat turf fibers invisibly over time — attracting dust and causing premature matting. No Stain Turf's degreasing service removes this buildup entirely and restores the original turf feel.</p><h3>What's Included</h3><ul><li><strong>Surface Assessment:</strong> We identify greasy or buildup-heavy zones across the turf.</li><li><strong>Degreaser Application:</strong> Turf-safe degreaser worked into affected fiber areas.</li><li><strong>Dwell &amp; Agitate:</strong> Solution breaks down oils, followed by gentle brushing.</li><li><strong>Full Rinse:</strong> High-volume rinse removes all degreaser and lifted residue.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' },
+    infill: { tag: 'Restoration', title: 'Infill Renewal', img: 'https://images.pexels.com/photos/1268101/pexels-photo-1268101.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'Infill shifts and compacts over time from foot traffic and weather. We replenish displaced material to restore cushion and drainage.', h2: 'Infill Renewal at No Stain Turf', body: '<p>Infill is the foundation of your artificial turf — it supports fiber upright position, provides cushion, and enables drainage. No Stain Turf measures your infill levels and replenishes exactly what's needed to restore your turf to its original performance.</p><h3>What's Included</h3><ul><li><strong>Level Assessment:</strong> We measure infill depth across the turf to find depleted areas.</li><li><strong>Material Matching:</strong> We match infill type to your existing turf system.</li><li><strong>Even Application:</strong> New infill spread evenly in calculated amounts.</li><li><strong>Power Broom In:</strong> Infill worked down into the fiber base for proper distribution.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' },
+    magnet: { tag: 'Safety Sweep', title: 'Magnet Sweep', img: 'https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'Nails, staples, wire, and metal debris are hidden hazards in your turf that can injure kids and pets. Our magnet sweep finds every piece.', h2: 'Magnet Sweep at No Stain Turf', body: '<p>Metal debris hidden in artificial turf is a serious safety hazard — especially in yards with children and pets. No Stain Turf performs a systematic magnet sweep of your entire turf area to locate and remove every piece of metal.</p><h3>What's Included</h3><ul><li><strong>Visual Inspection:</strong> Pre-sweep walkthrough to identify any visible hazards.</li><li><strong>Full Magnet Pass:</strong> Powerful magnet bar swept in systematic passes across the full area.</li><li><strong>Edge Sweep:</strong> Dedicated passes along edges and corners where debris collects.</li><li><strong>Collection &amp; Confirm:</strong> All collected metal debris shown to you before disposal.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' },
+    powerwash: { tag: 'Deep Clean', title: 'Power Wash', img: 'https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=1800&h=700&fit=crop', desc: 'A thorough power wash flushes deep contamination, rinses treatment residues, and leaves your turf clean from fiber tip to base.', h2: 'Power Wash at No Stain Turf', body: '<p>Power washing is the ultimate finishing step for a full-service turf clean. No Stain Turf calibrates pressure specifically for artificial turf — powerful enough to flush deep contamination without displacing infill or damaging fibers.</p><h3>What's Included</h3><ul><li><strong>Pressure Calibration:</strong> Set to turf-safe levels before any work begins.</li><li><strong>Systematic Rinse:</strong> Rows across the full surface, flushing toward drainage.</li><li><strong>Edge Flush:</strong> Borders and drainage areas cleared of accumulated buildup.</li><li><strong>Final Inspection:</strong> Drainage verified flowing freely and surface clean throughout.</li></ul><h3>Why Choose No Stain Turf?</h3><ul><li><strong>No Subcontractors:</strong> Our team shows up personally every time.</li><li><strong>100% Satisfaction Guaranteed:</strong> Not happy? We come back and make it right.</li><li><strong>Pet &amp; Kid Safe:</strong> Every product is EPA-approved and family-safe.</li><li><strong>Same-Week Availability:</strong> Most jobs scheduled within 3–5 days.</li></ul>' }
   };
 
   function openSvcPanel(key) {
     var d = svcDetails[key];
     if (!d) return;
-    document.getElementById('svc-panel-img').src = d.img;
-    document.getElementById('svc-panel-img').alt = d.title;
-    document.getElementById('svc-panel-tag').textContent = d.tag;
-    document.getElementById('svc-panel-title').textContent = d.title;
-    document.getElementById('svc-panel-desc').textContent = d.desc;
-    var stepsHtml = d.steps.map(function(s, i) {
-      return '<div class="svc-panel-step"><div class="svc-panel-step-num">' + (i+1) + '</div><div class="svc-panel-step-body"><h4>' + s.t + '</h4><p>' + s.b + '</p></div></div>';
-    }).join('');
-    document.getElementById('svc-panel-steps').innerHTML = stepsHtml;
-    document.getElementById('svc-panel').classList.add('open');
-    document.getElementById('svc-panel-overlay').classList.add('open');
-    document.getElementById('svc-panel').scrollTop = 0;
+    var modal = document.getElementById('svc-modal');
+    document.getElementById('svc-hero-img').src = d.img;
+    document.getElementById('svc-hero-img').alt = d.title;
+    document.getElementById('svc-hero-tag').textContent = d.tag;
+    document.getElementById('svc-hero-title').textContent = d.title;
+    document.getElementById('svc-hero-desc').textContent = d.desc;
+    document.getElementById('svc-detail-content').innerHTML = '<h2>' + d.h2 + '</h2>' + d.body;
+    modal.classList.add('open');
+    modal.scrollTop = 0;
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
   }
   function closeSvcPanel() {
-    document.getElementById('svc-panel').classList.remove('open');
-    document.getElementById('svc-panel-overlay').classList.remove('open');
+    var modal = document.getElementById('svc-modal');
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
+  function scrollSvcReviews(dir) {
+    var grid = document.getElementById('svcReviewsGrid');
+    if (!grid) return;
+    var card = grid.querySelector('.svc-rc-block');
+    var w = card ? card.offsetWidth + 20 : 300;
+    grid.scrollBy({ left: dir * w, behavior: 'smooth' });
+  }
 
-  // Also make openServiceDetail an alias
+  // alias
   function openServiceDetail(key) { openSvcPanel(key); }
 
   /* ── Reviews Carousel ── */
