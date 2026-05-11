@@ -1355,16 +1355,9 @@
       transform: translateY(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
     }
     #svc-panel.open { transform: translateY(0); }
-    .svc-panel-hero { position: relative; height: 100vh; overflow: hidden; flex-shrink: 0; }
+    .svc-panel-hero { position: relative; height: 420px; overflow: hidden; }
     .svc-panel-hero img { width: 100%; height: 100%; object-fit: cover; }
-    .svc-panel-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,20,5,0.82) 0%, rgba(5,20,5,0.2) 55%, transparent 100%); }
-    .svc-panel-hero-info { position: absolute; bottom: 3.5rem; left: 2.5rem; right: 2.5rem; z-index: 2; max-width: 700px; }
-    .svc-panel-hero-info .svc-panel-tag { color: #7bc142; margin-bottom: 0.5rem; }
-    .svc-panel-hero-info .svc-panel-title { color: #ffffff; font-size: clamp(2rem,5vw,3.2rem); }
-    .svc-panel-hero-info .svc-panel-desc { color: rgba(255,255,255,0.78); margin-top: 0.75rem; font-size: 1rem; max-width: 580px; }
-    .svc-scroll-hint { position: absolute; bottom: 1.4rem; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.45); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 2; }
-    .svc-scroll-hint::after { content: "↓"; font-size: 1.1rem; animation: svc-bounce 1.6s ease-in-out infinite; }
-    @keyframes svc-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+    .svc-panel-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,31,15,0.7) 0%, transparent 60%); }
     .svc-panel-close {
       position: fixed; top: 1.25rem; left: 1.25rem; z-index: 2002;
       background: rgba(255,255,255,0.95); border: none; border-radius: 50px;
@@ -2109,14 +2102,11 @@
     <img id="svc-panel-img" src="" alt="" />
     <div class="svc-panel-hero-overlay"></div>
     <button class="svc-panel-close" onclick="closeSvcPanel()">&#8592; Back</button>
-    <div class="svc-panel-hero-info">
-      <div class="svc-panel-tag" id="svc-panel-tag"></div>
-      <h2 class="svc-panel-title" id="svc-panel-title"></h2>
-      <p class="svc-panel-desc" id="svc-panel-desc"></p>
-    </div>
-    <div class="svc-scroll-hint">Scroll</div>
   </div>
   <div class="svc-panel-body">
+    <div class="svc-panel-tag" id="svc-panel-tag"></div>
+    <h2 class="svc-panel-title" id="svc-panel-title"></h2>
+    <p class="svc-panel-desc" id="svc-panel-desc"></p>
     <div class="svc-panel-section-title">How It Works</div>
     <div class="svc-panel-steps" id="svc-panel-steps"></div>
     <button class="btn-green" style="width:100%;" onclick="closeSvcPanel(); openModal(event);">Get Your Instant Quote</button>
