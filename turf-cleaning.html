@@ -1347,6 +1347,46 @@
       opacity: 1;
       transform: translateY(0);
     }
+    /* ── SERVICE DETAIL PANEL ── */
+    #svc-panel-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.5); opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    #svc-panel-overlay.open { opacity: 1; pointer-events: all; }
+    #svc-panel {
+      position: fixed; top: 0; right: 0; bottom: 0; width: 480px; max-width: 95vw;
+      background: white; z-index: 2001; overflow-y: auto;
+      transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: -8px 0 40px rgba(0,0,0,0.2);
+    }
+    #svc-panel.open { transform: translateX(0); }
+    .svc-panel-hero { position: relative; height: 220px; overflow: hidden; }
+    .svc-panel-hero img { width: 100%; height: 100%; object-fit: cover; }
+    .svc-panel-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,31,15,0.7) 0%, transparent 60%); }
+    .svc-panel-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: rgba(255,255,255,0.9); border: none; border-radius: 50%;
+      width: 36px; height: 36px; font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .svc-panel-body { padding: 1.75rem; }
+    .svc-panel-tag { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 0.4rem; }
+    .svc-panel-title { font-size: 1.6rem; font-weight: 900; color: var(--dark); margin-bottom: 0.75rem; }
+    .svc-panel-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.5rem; }
+    .svc-panel-section-title { font-size: 1rem; font-weight: 800; color: var(--dark); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); }
+    .svc-panel-steps { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2rem; }
+    .svc-panel-step { display: flex; gap: 12px; align-items: flex-start; }
+    .svc-panel-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--green-dim); border: 1px solid var(--green); color: var(--green); font-size: 0.8rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .svc-panel-step-body h4 { font-size: 0.88rem; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+    .svc-panel-step-body p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.55; margin: 0; }
+    .svc-panel-membership { background: var(--off-white); border-radius: 16px; padding: 1.5rem; margin-top: 1.5rem; }
+    .svc-panel-membership h3 { font-size: 1rem; font-weight: 900; color: var(--dark); margin-bottom: 0.3rem; }
+    .svc-panel-membership p { font-size: 0.83rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .svc-panel-plans { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.25rem; }
+    .svc-plan-row { display: flex; justify-content: space-between; align-items: center; background: white; border-radius: 10px; padding: 0.85rem 1rem; border: 1px solid var(--border); }
+    .svc-plan-name { font-weight: 700; font-size: 0.9rem; color: var(--dark); }
+    .svc-plan-savings { font-size: 0.82rem; font-weight: 800; color: var(--green); background: var(--green-dim); padding: 3px 10px; border-radius: 50px; }
   </style>
 </head>
 <body>
@@ -1434,102 +1474,159 @@
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;">
 
-      <div style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div onclick="openServiceDetail('refluff')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <div style="position:relative;height:180px;overflow:hidden;">
-          <img src="https://images.pexels.com/photos/1453499/pexels-photo-1453499.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Debris Removal" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''" />
+          <img src="https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Re-Fluff" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🔄</div>
+        </div>
+        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Re-Fluff</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">Lifts and restores flat turf fibers back to their natural upright position using a specialized power broom.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
+        </div>
+      </div>
+
+      <div onclick="openServiceDetail('debris')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.pexels.com/photos/1453499/pexels-photo-1453499.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Debris Removal" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
           <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🍃</div>
         </div>
         <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
           <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Debris Removal</h3>
-          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;">Complete removal of leaves, dirt, twigs, and buildup that collects in your turf fibers over time.</p>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">Complete removal of leaves, dirt, twigs, and buildup that collects in your turf fibers over time.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
         </div>
       </div>
 
-      <div style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div onclick="openServiceDetail('edge')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <div style="position:relative;height:180px;overflow:hidden;">
-          <img src="https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Power Broom" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''" />
-          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">⚡</div>
-        </div>
-        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
-          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Power Broom</h3>
-          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;">Re-fluffs matted turf fibers and redistributes infill for a natural, upright appearance.</p>
-        </div>
-      </div>
-
-      <div style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="position:relative;height:180px;overflow:hidden;">
-          <img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Pet Odor Elimination" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''" />
-          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🐾</div>
-        </div>
-        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
-          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Pet Odor Elimination</h3>
-          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;">Enzyme-based deep treatment that neutralizes pet waste odors at the source — not just masks them.</p>
-        </div>
-      </div>
-
-      <div style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="position:relative;height:180px;overflow:hidden;">
-          <img src="https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Sanitization" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''" />
-          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🧪</div>
-        </div>
-        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
-          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Sanitization</h3>
-          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;">Kid and pet safe antimicrobial treatment that kills bacteria, mold, and allergens living in your turf.</p>
-        </div>
-      </div>
-
-      <div style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="position:relative;height:180px;overflow:hidden;">
-          <img src="https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Stain Removal" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''" />
-          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🧹</div>
-        </div>
-        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
-          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Stain Removal</h3>
-          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;">Targeted treatment for rust, food, oil, and other stubborn stains using professional-grade solutions.</p>
-        </div>
-      </div>
-
-      <div style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="position:relative;height:180px;overflow:hidden;">
-          <img src="https://images.pexels.com/photos/1268101/pexels-photo-1268101.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Infill Renewal" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''" />
-          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🌱</div>
-        </div>
-        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
-          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Infill Renewal</h3>
-          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;">Replenishes displaced or low infill material to restore cushion, drainage, and a natural turf feel.</p>
-        </div>
-      </div>
-
-      <div style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="position:relative;height:180px;overflow:hidden;">
-          <img src="https://images.pexels.com/photos/1599788/pexels-photo-1599788.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Edge Cleaning" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''" />
+          <img src="https://images.pexels.com/photos/1599788/pexels-photo-1599788.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Edge Cleaning" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
           <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">📐</div>
         </div>
         <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
           <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Edge Cleaning</h3>
-          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;">Detail cleaning along all borders, bender boards, and perimeter edges for a sharp, finished look.</p>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">Detail cleaning along all borders, bender boards, and perimeter edges for a sharp, finished look.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
         </div>
       </div>
 
-      <div style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div onclick="openServiceDetail('weed')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <div style="position:relative;height:180px;overflow:hidden;">
-          <img src="https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Weed Removal" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''" />
+          <img src="https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Weed Removal" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
           <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🌿</div>
         </div>
         <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
           <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Weed Removal</h3>
-          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;">Manual and treatment-based removal of weeds pushing through seams, edges, and drainage holes.</p>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">Manual and treatment-based removal of weeds pushing through seams, edges, and drainage holes.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
         </div>
       </div>
 
-      <div style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.12)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div onclick="openServiceDetail('vacuum')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <div style="position:relative;height:180px;overflow:hidden;">
-          <img src="https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Power Wash" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''" />
+          <img src="https://images.pexels.com/photos/3768914/pexels-photo-3768914.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Turf Vacuum" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🌀</div>
+        </div>
+        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Turf Vacuum</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">Industrial vacuum removes fine particles, pet hair, and debris embedded deep in the infill layer.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
+        </div>
+      </div>
+
+      <div onclick="openServiceDetail('broom')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Power Broom" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">⚡</div>
+        </div>
+        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Power Broom</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">Re-fluffs matted turf fibers and redistributes infill for a natural, upright appearance.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
+        </div>
+      </div>
+
+      <div onclick="openServiceDetail('deodorizer')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Deodorizer" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🌸</div>
+        </div>
+        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Deodorizer</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">Enzyme-based treatment eliminates odor molecules at the source — not just masks them.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
+        </div>
+      </div>
+
+      <div onclick="openServiceDetail('sanitizer')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Sanitizer" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🧪</div>
+        </div>
+        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Sanitizer</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">Kid and pet safe antimicrobial treatment kills bacteria, mold, and allergens living in your turf.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
+        </div>
+      </div>
+
+      <div onclick="openServiceDetail('stain')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Stain Removal" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🧹</div>
+        </div>
+        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Stain Removal</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">Targeted treatment for rust, food, oil, and stubborn stains using professional-grade solutions.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
+        </div>
+      </div>
+
+      <div onclick="openServiceDetail('degrease')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Degrease" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🔧</div>
+        </div>
+        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Degrease</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">Professional degreasing removes oil, sunscreen, and organic buildup from turf fibers and infill.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
+        </div>
+      </div>
+
+      <div onclick="openServiceDetail('infill')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.pexels.com/photos/1268101/pexels-photo-1268101.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Infill Renewal" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🌱</div>
+        </div>
+        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Infill Renewal</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">Replenishes displaced infill material to restore cushion, drainage, and a natural turf feel.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
+        </div>
+      </div>
+
+      <div onclick="openServiceDetail('magnet')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Magnet Sweep" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">🧲</div>
+        </div>
+        <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
+          <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Magnet Sweep</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">Powerful magnetic sweep collects nails, staples, and metal hazards hidden in your turf.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
+        </div>
+      </div>
+
+      <div onclick="openServiceDetail('powerwash')" style="background:white;border-radius:16px;overflow:hidden;border:1px solid var(--border);display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(45,122,58,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:relative;height:180px;overflow:hidden;">
+          <img src="https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Power Wash" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
           <div style="position:absolute;bottom:0.75rem;left:0.75rem;width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">💦</div>
         </div>
         <div style="padding:1.25rem;flex:1;display:flex;flex-direction:column;gap:0.5rem;">
           <h3 style="font-size:1rem;font-weight:800;color:var(--dark);">Power Wash</h3>
-          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;">High-pressure rinse that flushes out deep contaminants, odors, and residue from the turf base.</p>
+          <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;flex:1;">High-pressure rinse flushes out deep contaminants, odors, and residue from the turf base.</p>
+          <div style="font-size:0.8rem;font-weight:700;color:var(--green);margin-top:0.5rem;">Learn More →</div>
         </div>
       </div>
 
@@ -1991,6 +2088,33 @@
 
   </div>
 </div>
+<!-- ── SERVICE DETAIL PANEL ── -->
+<div id="svc-panel-overlay" onclick="closeSvcPanel()"></div>
+<div id="svc-panel">
+  <div class="svc-panel-hero">
+    <img id="svc-panel-img" src="" alt="" />
+    <div class="svc-panel-hero-overlay"></div>
+    <button class="svc-panel-close" onclick="closeSvcPanel()">✕</button>
+  </div>
+  <div class="svc-panel-body">
+    <div class="svc-panel-tag" id="svc-panel-tag"></div>
+    <h2 class="svc-panel-title" id="svc-panel-title"></h2>
+    <p class="svc-panel-desc" id="svc-panel-desc"></p>
+    <div class="svc-panel-section-title">How It Works</div>
+    <div class="svc-panel-steps" id="svc-panel-steps"></div>
+    <button class="btn-green" style="width:100%;margin-bottom:0;" onclick="closeSvcPanel(); openModal(event);">Get Your Instant Quote</button>
+    <div class="svc-panel-membership">
+      <h3>🌿 Save with a Maintenance Plan</h3>
+      <p>Book recurring service and save on every visit.</p>
+      <div class="svc-panel-plans">
+        <div class="svc-plan-row"><span class="svc-plan-name">Bi-Monthly</span><span class="svc-plan-savings">$75 OFF each visit</span></div>
+        <div class="svc-plan-row"><span class="svc-plan-name">Monthly</span><span class="svc-plan-savings">$50 OFF each visit</span></div>
+        <div class="svc-plan-row"><span class="svc-plan-name">Quarterly</span><span class="svc-plan-savings">$30 OFF each visit</span></div>
+      </div>
+      <button class="btn-green" style="width:100%;" onclick="closeSvcPanel(); openModal(event);">Get Your Instant Quote</button>
+    </div>
+  </div>
+</div>
 <!-- ── SCRIPTS ── -->
 <script>
   /* ── Navbar scroll ── */
@@ -2062,6 +2186,9 @@
   function handleOverlayClick(e) {
     if (e.target === document.getElementById('modal-overlay')) closeModal();
   }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeModal(); closeSvcPanel(); }
+  });
 
   function goToStep(n) {
     currentStep = n;
@@ -2129,6 +2256,48 @@
     setTimeout(() => success.style.display = 'none', 6000);
   }
 
+  /* ── Service Detail Panel ── */
+  var svcDetails = {
+    refluff: { tag: 'Fiber Care', title: 'Re-Fluff', img: 'https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Over time turf fibers get matted down from foot traffic, pets, and weather. Our re-fluff service uses a specialized power broom to lift every fiber back to its natural upright position — making your turf look brand new.', steps: [{t:'Assessment',b:'We walk the turf to identify high-traffic flat areas and fiber direction.'},{t:'Power Broom Pass',b:'Our machine broom agitates fibers in multiple directions to lift and restore them.'},{t:'Infill Check',b:'We inspect infill levels and redistribute as needed for even support.'},{t:'Final Inspection',b:'We walk the entire area to confirm consistent, upright fiber coverage.'}] },
+    debris: { tag: 'Cleaning', title: 'Debris Removal', img: 'https://images.pexels.com/photos/1453499/pexels-photo-1453499.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Leaves, dirt, twigs, and organic matter that settle into turf can trap moisture and cause bacteria growth. We remove all surface and embedded debris completely.', steps: [{t:'Blow-Off',b:'We use professional blowers to clear loose surface debris from the entire area.'},{t:'Rake & Collect',b:'Stubborn debris is hand-raked and collected from edges and tight spaces.'},{t:'Vacuum Pass',b:'An industrial turf vacuum pulls out fine particles embedded in the infill.'},{t:'Final Check',b:'We inspect every section to confirm the turf is fully clear.'}] },
+    edge: { tag: 'Detail Work', title: 'Edge Cleaning', img: 'https://images.pexels.com/photos/1599788/pexels-photo-1599788.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'The edges of your turf collect the most debris, weed growth, and buildup. Our edge cleaning service gives your turf a sharp, finished look along every border and bender board.', steps: [{t:'Border Inspection',b:'We identify all edges, seams, and bender boards around the perimeter.'},{t:'Detail Cleaning',b:'Using hand tools we remove dirt, debris, and buildup along every edge.'},{t:'Weed Check',b:'We remove any weeds or growth visible along borders.'},{t:'Final Trim',b:'Edges are brushed and tidied for a clean, defined perimeter.'}] },
+    weed: { tag: 'Maintenance', title: 'Weed Removal', img: 'https://images.pexels.com/photos/4503273/pexels-photo-4503273.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Weeds push through turf seams, drainage holes, and edges over time. We remove them manually and treat the areas to prevent regrowth.', steps: [{t:'Full Inspection',b:'We walk the entire turf surface identifying all weed penetration points.'},{t:'Manual Removal',b:'Each weed is pulled by hand from the root to prevent regrowth.'},{t:'Seam Treatment',b:'We treat problem seams and drainage holes with a turf-safe solution.'},{t:'Prevention Check',b:'We note recurring areas and recommend maintenance intervals to stay ahead.'}] },
+    vacuum: { tag: 'Deep Clean', title: 'Turf Vacuum', img: 'https://images.pexels.com/photos/3768914/pexels-photo-3768914.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Surface cleaning only does so much. Our industrial turf vacuum reaches deep into the infill layer to pull out pet hair, fine dust, pollen, and microscopic particles you cannot see.', steps: [{t:'Setup',b:'We set up the industrial vacuum system and do a test pass on a small area.'},{t:'Systematic Pass',b:'We vacuum in overlapping passes across the entire turf surface.'},{t:'Edge Vacuum',b:'Edges and corners get a dedicated pass where fine debris accumulates most.'},{t:'Infill Check',b:'After vacuuming we check infill levels and top up if needed.'}] },
+    broom: { tag: 'Fiber Care', title: 'Power Broom', img: 'https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Our power broom is one of the most effective tools for maintaining healthy turf. It lifts fibers, redistributes infill, and removes light debris in a single pass.', steps: [{t:'Direction Pass',b:'We run the broom against the natural fiber direction to lift and open fibers.'},{t:'Infill Distribution',b:'The rotating brush evenly redistributes infill to low spots and edges.'},{t:'Cross Pass',b:'A second pass at 90 degrees ensures complete and even coverage.'},{t:'Finish',b:'Final inspection confirms fibers are standing upright and infill is level.'}] },
+    deodorizer: { tag: 'Odor Control', title: 'Deodorizer', img: 'https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Pet waste, bacteria, and organic matter create odors that sink deep into your turf infill. Our enzyme-based deodorizer breaks down odor molecules at the source for lasting freshness.', steps: [{t:'Pre-Rinse',b:'We lightly rinse the surface to open turf fibers and prepare for treatment.'},{t:'Enzyme Application',b:'Our enzyme solution is applied evenly across the entire turf surface.'},{t:'Dwell Time',b:'The enzymes are given time to penetrate the infill and break down odor sources.'},{t:'Final Rinse',b:'A light rinse activates the solution and carries odor residue away.'}] },
+    sanitizer: { tag: 'Health & Safety', title: 'Sanitizer', img: 'https://images.pexels.com/photos/4239146/pexels-photo-4239146.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Bacteria, mold, and allergens live in turf that sees regular pet and foot traffic. Our antimicrobial sanitization is safe for kids and pets and kills what you cannot see.', steps: [{t:'Pre-Clean',b:'Surface debris is removed first so the sanitizer can reach the turf fibers.'},{t:'Application',b:'Our pet-safe antimicrobial is applied in an even mist across the full area.'},{t:'Penetration',b:'The solution penetrates fiber and infill to kill bacteria and mold at the root.'},{t:'Air Dry',b:'Turf is allowed to fully dry before foot traffic resumes — usually 30-60 minutes.'}] },
+    stain: { tag: 'Stain Treatment', title: 'Stain Removal', img: 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Rust, food, oil, paint, and other stains can permanently discolor turf if left untreated. Our targeted stain treatment uses professional-grade products safe for synthetic fibers.', steps: [{t:'Stain Identification',b:'We identify each stain and determine the right treatment approach.'},{t:'Pre-Treatment',b:'A targeted solution is applied directly to each stain and allowed to penetrate.'},{t:'Agitation',b:'Light scrubbing lifts the stain from the fiber without damaging the turf.'},{t:'Rinse & Check',b:'We rinse and inspect to confirm removal before finishing.'}] },
+    degrease: { tag: 'Deep Clean', title: 'Degrease', img: 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Oil, sunscreen, grease, and organic buildup coat turf fibers over time, attracting dirt and causing matting. Our degreasing treatment restores a clean, fresh fiber surface.', steps: [{t:'Surface Assessment',b:'We identify greasy or buildup-heavy zones across the turf.'},{t:'Degreaser Application',b:'Turf-safe degreaser is applied and worked into affected fiber areas.'},{t:'Dwell & Agitate',b:'The solution is given time to break down oils before gentle brushing.'},{t:'Full Rinse',b:'High-volume rinse removes all degreaser and lifted residue.'}] },
+    infill: { tag: 'Restoration', title: 'Infill Renewal', img: 'https://images.pexels.com/photos/1268101/pexels-photo-1268101.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Infill material shifts and compacts over time from foot traffic and weather. We replenish displaced material to restore cushion, drainage, and a natural turf feel.', steps: [{t:'Level Assessment',b:'We measure infill depth across the turf to identify low or depleted areas.'},{t:'Material Selection',b:'We match infill type (crumb rubber, silica sand, organic) to your existing turf.'},{t:'Even Application',b:'New infill is spread evenly across the turf surface in calculated amounts.'},{t:'Power Broom In',b:'A power broom works the infill down into the fiber base for proper distribution.'}] },
+    magnet: { tag: 'Safety Sweep', title: 'Magnet Sweep', img: 'https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'Nails, staples, wire, and metal debris are hidden hazards in your turf that can injure kids, pets, or damage equipment. Our magnet sweep finds and removes every piece.', steps: [{t:'Pre-Sweep Walk',b:'We do a visual inspection to note any visible metal objects first.'},{t:'Full Magnet Pass',b:'A powerful magnet bar is swept in systematic passes across the entire area.'},{t:'Edge Sweep',b:'Edges and corners receive dedicated passes where debris accumulates.'},{t:'Collection & Confirm',b:'All collected metal debris is shown to you and disposed of safely.'}] },
+    powerwash: { tag: 'Deep Clean', title: 'Power Wash', img: 'https://images.pexels.com/photos/4107120/pexels-photo-4107120.jpeg?auto=compress&cs=tinysrgb&w=800', desc: 'A thorough power wash flushes out deep contamination, rinses away treatment residues, and leaves your turf clean from fiber tip to base. Ideal as the final step in any full-service clean.', steps: [{t:'Setup & Pressure Check',b:'We calibrate pressure to turf-safe levels — enough to clean without displacing infill.'},{t:'Systematic Rinse',b:'We work in rows across the turf, flushing contaminants toward drainage points.'},{t:'Edge Flush',b:'Borders and drainage areas are flushed to remove accumulated buildup.'},{t:'Final Inspection',b:'We check drainage is flowing freely and the turf surface is clean throughout.'}] }
+  };
+
+  function openSvcPanel(key) {
+    var d = svcDetails[key];
+    if (!d) return;
+    document.getElementById('svc-panel-img').src = d.img;
+    document.getElementById('svc-panel-img').alt = d.title;
+    document.getElementById('svc-panel-tag').textContent = d.tag;
+    document.getElementById('svc-panel-title').textContent = d.title;
+    document.getElementById('svc-panel-desc').textContent = d.desc;
+    var stepsHtml = d.steps.map(function(s, i) {
+      return '<div class="svc-panel-step"><div class="svc-panel-step-num">' + (i+1) + '</div><div class="svc-panel-step-body"><h4>' + s.t + '</h4><p>' + s.b + '</p></div></div>';
+    }).join('');
+    document.getElementById('svc-panel-steps').innerHTML = stepsHtml;
+    document.getElementById('svc-panel').classList.add('open');
+    document.getElementById('svc-panel-overlay').classList.add('open');
+    document.getElementById('svc-panel').scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSvcPanel() {
+    document.getElementById('svc-panel').classList.remove('open');
+    document.getElementById('svc-panel-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Also make openServiceDetail an alias
+  function openServiceDetail(key) { openSvcPanel(key); }
 
 </script>
 </body>
